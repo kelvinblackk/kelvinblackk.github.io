@@ -2,12 +2,7 @@ import re
 import sys
 from pathlib import Path
 
-html = Path("index.html").read_text(encoding="utf-8")
-# also check robo/index.html if it exists
-files = [Path("index.html")]
-robo = Path("robo/index.html")
-if robo.exists():
-    files.append(robo)
+files = [Path("index.html"), Path("pousadas/index.html"), Path("pousadas/robo/index.html")]
 
 missing = []
 checked = 0

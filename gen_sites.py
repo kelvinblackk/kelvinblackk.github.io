@@ -1,6 +1,11 @@
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parent / "pousadas"
+
 SITES = [
   dict(slug="serra", hero_alt="Chalés de madeira entre araucárias com montanhas e névoa ao fundo", gal=['Café colonial servido na varanda com vista das araucárias', 'Trilha de terra entre araucárias numa manhã de névoa', 'Lareira acesa com poltronas e manta no chalé', 'Vale verde da serra com névoa ao amanhecer'],
-       file="serra/index.html", title="Pousada Cantinho da Serra",
+       title="Pousada Cantinho da Serra",
        short="Cantinho da Serra", tagline="Clima de montanha, lareira e café colonial",
        kicker="Pousada na serra · 6 chalés",
        about="Seis chalés de madeira entre araucárias, com lareira, café colonial servido na varanda e trilhas que começam no nosso portão. Ideal para casais que querem desacelerar no fim de semana.",
@@ -12,7 +17,7 @@ SITES = [
        amen=["Café colonial", "Lareira nos chalés", "Trilhas guiadas", "Wi-Fi", "Estacionamento", "Pet friendly"],
        where="Estrada da Serra, km 8 · 15 min do centro (endereço ilustrativo)"),
   dict(slug="mar", hero_alt="Pousada de casas brancas com coqueiros diante de mar turquesa", gal=['Piscina cercada de coqueiros e espreguiçadeiras', 'Café da manhã tropical com frutas e tapioca de frente para o mar', 'Guarda-sóis de palha e cadeiras na areia', 'Jangada de vela branca na areia da praia'],
-       file="mar/index.html", title="Pousada Maré Mansa",
+       title="Pousada Maré Mansa",
        short="Maré Mansa", tagline="Pé na areia, rede na varanda e mar calmo",
        kicker="Pousada pé na areia · 10 quartos",
        about="A 30 passos do mar, com piscina, café da manhã com frutas tropicais e quartos arejados. Praia de águas calmas, perfeita para famílias com crianças.",
@@ -24,7 +29,7 @@ SITES = [
        amen=["Piscina", "Café tropical", "Guarda-sol e cadeiras", "Wi-Fi", "Estacionamento", "Passeios de barco"],
        where="Av. Beira-Mar, 900 · Praia Mansa (endereço ilustrativo)"),
   dict(slug="colonial", hero_alt="Fachada do casarão colonial amarelo em rua de pedra com igreja barroca ao fundo", gal=['Mesa de café no pátio interno sob a jabuticabeira', 'Rua de pedra com casarões coloridos e igreja barroca', 'Corredor interno com piso de madeira original e janelas em arco', 'Bicicletas encostadas em casarão colorido'],
-       file="colonial/index.html", title="Pousada Casarão Colonial",
+       title="Pousada Casarão Colonial",
        short="Casarão Colonial", tagline="Um casarão de 1890 no coração do centro histórico",
        kicker="Centro histórico · 7 suítes",
        about="Casarão restaurado com pé-direito alto, piso de madeira original e pátio interno com jabuticabeiras. Caminhe até igrejas, museus e restaurantes sem precisar de carro.",
@@ -36,7 +41,7 @@ SITES = [
        amen=["Café no pátio", "Roteiro histórico", "Wi-Fi", "Ar-condicionado", "Bicicletas", "Recepção 24h"],
        where="Rua do Rosário, 45 · Centro Histórico (endereço ilustrativo)"),
   dict(slug="mata", hero_alt="Bangalôs de madeira sobre palafitas à beira do igarapé na floresta", gal=['Banho de igarapé com prainha de areia branca', 'Canoa de madeira no igarapé entre a mata', 'Peixe assado na folha, açaí e farinha: culinária regional', 'Passarela de madeira suspensa entre árvores gigantes'],
-       file="mata/index.html", title="Pousada Recanto da Mata",
+       title="Pousada Recanto da Mata",
        short="Recanto da Mata", tagline="Bangalôs na floresta, à beira do igarapé",
        kicker="Ecopousada · 5 bangalôs",
        about="Bangalôs suspensos no meio da mata, com banho de igarapé, trilhas com guia local e culinária regional. Energia solar e coleta de água da chuva.",
@@ -90,7 +95,7 @@ def build(s):
 <title>{s["title"]}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{BASE_URL}/{s['slug']}/">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <meta property="og:title" content="{s['title']}">
 <meta property="og:description" content="{description}">
 <meta property="og:image" content="{BASE_URL}/img/{s['slug']}/hero.webp">
@@ -162,8 +167,8 @@ footer{{padding:30px 0 90px;color:var(--muted);font-size:.88rem;text-align:cente
 {LIGHTBOX}
 </body></html>'''
 
-import os
 for s in SITES:
-    os.makedirs(s["slug"], exist_ok=True)
-    open(s["file"], "w", encoding="utf-8").write(build(s))
+    pasta = ROOT / s["slug"]
+    pasta.mkdir(parents=True, exist_ok=True)
+    (pasta / "index.html").write_text(build(s), encoding="utf-8")
 print("ok")

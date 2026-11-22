@@ -9,7 +9,7 @@ from PIL import Image
 
 ENV = Path(r"C:\Projetos\AI-VIDEO-FACTORY\.env")
 MODEL = "gemini-3.1-flash-image"
-ROOT = Path(__file__).parent / "img"
+ROOT = Path(__file__).parent / "pousadas" / "img"
 STYLE = ("Fotografia profissional de hotelaria, realista, luz natural, lente 24-35mm, "
          "cores naturais, sem texto, sem logotipos, sem marca d'água, sem pessoas em destaque.")
 

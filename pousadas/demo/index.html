@@ -2,49 +2,49 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Pousada Sítio dos Ipês. Casarão restaurado entre ipês, com lago, cavalgada e comida feita no fogão a lenha. Reserve em menos de 2 minutos.">
-<link rel="canonical" href="https://kelvinblackk.github.io/pousadas/fazenda/">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<meta property="og:title" content="Pousada Sítio dos Ipês">
-<meta property="og:description" content="Pousada Sítio dos Ipês. Casarão restaurado entre ipês, com lago, cavalgada e comida feita no fogão a lenha. Reserve em menos de 2 minutos.">
-<meta property="og:image" content="https://kelvinblackk.github.io/pousadas/img/fazenda/hero.webp">
-<meta property="og:url" content="https://kelvinblackk.github.io/pousadas/fazenda/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pousada Remanso do Rio</title>
+<meta name="description" content="Pousada Remanso do Rio, a poucos minutos do centro, com deck e redes à beira do rio, quartos climatizados e café regional incluso.">
+<link rel="canonical" href="https://kelvinblackk.github.io/pousadas/demo/">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<meta property="og:title" content="Pousada Remanso do Rio">
+<meta property="og:description" content="Pousada Remanso do Rio, a poucos minutos do centro, com deck e redes à beira do rio, quartos climatizados e café regional incluso.">
+<meta property="og:image" content="https://kelvinblackk.github.io/pousadas/img/demo/hero.webp">
+<meta property="og:url" content="https://kelvinblackk.github.io/pousadas/demo/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pousada Sítio dos Ipês</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* Layout: site de pousada em uma coluna larga; seções alternam fundo claro e verde-floresta; chat flutuante no canto. */
 :root{
-  --bg:#F8F3EA;
+  --bg:#F3F6F1;
   --surface:#FFFFFF;
-  --ink:#2A1C14;
-  --muted:#6E5B4E;
-  --line:#E8DCCB;
-  --forest:#3B2418;
-  --forest-2:#6B3F28;
-  --sun:#E8B04A;
-  --sun-ink:#3A2604;
+  --ink:#14231B;
+  --muted:#5A6B61;
+  --line:#DCE4DD;
+  --forest:#1D3B2C;
+  --forest-2:#2C5641;
+  --sun:#E3A51C;
+  --sun-ink:#3A2A05;
   --ok:#2F8A57; --warn:#C77A10; --info:#2E6FA8;
-  --font-display:"Fraunces", "Segoe UI", system-ui, sans-serif;
+  --font-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --font-body:"Figtree", "Segoe UI", system-ui, sans-serif;
   --radius:14px;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#17110D; --surface:#211912; --ink:#F1E9E1; --muted:#B3A396; --line:#382A20;
-    --forest:#2A1A11; --forest-2:#55321F; --sun:#EDBB5C; --sun-ink:#2A1B02;
+    --bg:#0F1913; --surface:#17241C; --ink:#E7EEE9; --muted:#9DB0A4; --line:#2A3A30;
+    --forest:#12261B; --forest-2:#1F3D2D; --sun:#F0B53A; --sun-ink:#2A1E02;
     --ok:#5BC48A; --warn:#E7A23D; --info:#6AA8DE;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#17110D; --surface:#211912; --ink:#F1E9E1; --muted:#B3A396; --line:#382A20;
-  --forest:#2A1A11; --forest-2:#55321F; --sun:#EDBB5C; --sun-ink:#2A1B02;
+  --bg:#0F1913; --surface:#17241C; --ink:#E7EEE9; --muted:#9DB0A4; --line:#2A3A30;
+  --forest:#12261B; --forest-2:#1F3D2D; --sun:#F0B53A; --sun-ink:#2A1E02;
   --ok:#5BC48A; --warn:#E7A23D; --info:#6AA8DE;
   color-scheme: dark;
 }
@@ -80,7 +80,7 @@ header.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--b
 /* Hero */
 .hero{position:relative;background:var(--forest);color:#F3F6F1;overflow:hidden}
 .hero img.scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(44,26,17,.88) 0%,rgba(44,26,17,.55) 55%,rgba(44,26,17,.2) 100%)}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(16,36,26,.88) 0%,rgba(16,36,26,.55) 55%,rgba(16,36,26,.2) 100%)}
 .hero .wrap{position:relative;z-index:2;padding:72px 20px 40px;display:grid;gap:28px}
 .hero .kicker{font-weight:600;color:var(--sun);font-size:.95rem}
 .hero h1{font-size:clamp(2.3rem,6vw,4rem);font-weight:800;max-width:14ch;letter-spacing:-.02em}
@@ -224,7 +224,7 @@ footer b{color:#fff;font-family:var(--font-display)}
   <div class="wrap">
     <a class="brand" href="#inicio">
       <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="var(--forest)"/><path d="M6 21c3-2 6-2 10 0s7 2 10 0" stroke="var(--sun)" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M16 7l6 8H10z" fill="#fff"/></svg>
-      Sítio dos Ipês
+      Remanso do Rio
     </a>
     <nav aria-label="Seções">
       <a href="#quartos">Quartos</a>
@@ -238,11 +238,11 @@ footer b{color:#fff;font-family:var(--font-display)}
 </header>
 
 <section class="hero" id="inicio" style="padding:0">
-  <img class="scene" src="../img/fazenda/hero.webp" alt="Casarão de fazenda branco com janelas azuis, ipês amarelos floridos, cavalos e lago" width="1600" height="900" fetchpriority="high">
+  <img class="scene" src="../img/demo/hero.webp" alt="Pousada de madeira e telhado de telha à beira do rio ao pôr do sol, com deck e redes" width="1600" height="900" fetchpriority="high">
   <div class="wrap">
-    <p class="kicker">Pousada rural · 8 quartos</p>
-    <h1>Café da roça, cavalos e silêncio de fazenda</h1>
-    <p class="lead">Casarão restaurado entre ipês, com lago, cavalgada e comida feita no fogão a lenha. Reserve em menos de 2 minutos.</p>
+    <p class="kicker">Pousada à beira-rio · 8 quartos</p>
+    <h1>Descanso de verdade, a poucos minutos do centro</h1>
+    <p class="lead">Quartos climatizados, café regional incluso e atendimento rápido pelo WhatsApp. Reserve em menos de 2 minutos.</p>
     <form class="quick" id="quickForm">
       <div><label for="qIn">Check-in</label><input type="date" id="qIn" required></div>
       <div><label for="qOut">Check-out</label><input type="date" id="qOut" required></div>
@@ -250,7 +250,7 @@ footer b{color:#fff;font-family:var(--font-display)}
         <select id="qGuests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></div>
       <button class="btn btn-sun" type="submit">Ver valores</button>
     </form>
-    <div class="hero-facts"><span><b>Check-in</b> a partir das 14h</span><span><b>Café</b> 7h às 10h</span><span><b>Cavalgada</b> inclusa</span><span><b>Estacionamento</b> grátis</span></div>
+    <div class="hero-facts"><span><b>Check-in</b> a partir das 14h</span><span><b>Café</b> 6h30 às 9h30</span><span><b>Wi-Fi</b> em todos os quartos</span><span><b>Estacionamento</b> grátis</span></div>
   </div>
 </section>
 
@@ -303,11 +303,11 @@ footer b{color:#fff;font-family:var(--font-display)}
   <div class="wrap">
     <div class="sec-head"><h2>Comodidades</h2></div>
     <div class="amen">
-      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11h18v4a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M7 11V6a3 3 0 0 1 6 0"/></svg><p><b>Café da roça</b><span>Queijo da casa, pão caseiro, fogão a lenha</span></p></div>
+      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11h18v4a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M7 11V6a3 3 0 0 1 6 0"/></svg><p><b>Café regional</b><span>Tapioca, frutas da estação, bolo caseiro</span></p></div>
       <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 9a15 15 0 0 1 20 0"/><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><circle cx="12" cy="20" r="1"/></svg><p><b>Wi-Fi 300 Mb</b><span>Sinal em todos os quartos e áreas comuns</span></p></div>
       <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="10" rx="2"/><path d="M7 20v-4M17 20v-4"/></svg><p><b>Ar-condicionado</b><span>Split silencioso em todos os quartos</span></p></div>
       <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 17h14l-1.5-6h-11z"/><circle cx="8" cy="19" r="1.5"/><circle cx="16" cy="19" r="1.5"/><path d="M7 11l2-4h6l2 4"/></svg><p><b>Estacionamento</b><span>Gratuito e fechado, 8 vagas</span></p></div>
-      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 18c3-2 6-2 9 0s6 2 9 0"/><path d="M3 13c3-2 6-2 9 0s6 2 9 0"/></svg><p><b>Lago e cavalos</b><span>Cavalgada, pesca e passeio de caiaque</span></p></div>
+      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 18c3-2 6-2 9 0s6 2 9 0"/><path d="M3 13c3-2 6-2 9 0s6 2 9 0"/></svg><p><b>Deck no rio</b><span>Redes, pôr do sol e banho de rio</span></p></div>
       <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="7" cy="8" r="2"/><circle cx="17" cy="8" r="2"/><circle cx="4.5" cy="13" r="1.6"/><circle cx="19.5" cy="13" r="1.6"/><path d="M8 18c0-3 2-5 4-5s4 2 4 5c0 1.5-1.5 2-4 2s-4-.5-4-2z"/></svg><p><b>Aceita pets</b><span>Pequeno porte, com aviso prévio</span></p></div>
     </div>
   </div>
@@ -343,12 +343,12 @@ footer b{color:#fff;font-family:var(--font-display)}
 <section class="band" id="localizacao">
   <div class="wrap loc">
     <div>
-      <div class="sec-head"><h2>Como chegar</h2><p>Estrada Vicinal dos Ipês, km 6 · Zona Rural (endereço ilustrativo)</p></div>
+      <div class="sec-head"><h2>Como chegar</h2><p>Rua das Palmeiras, 120 · Bairro Beira-Rio (endereço ilustrativo)</p></div>
       <ul>
-        <li><span>Centro da cidade</span><span class="num">15 min de carro</span></li>
-        <li><span>Rodoviária</span><span class="num">20 min de carro</span></li>
-        <li><span>Aeroporto</span><span class="num">35 min de carro</span></li>
-        <li><span>Cachoeira mais próxima</span><span class="num">25 min de carro</span></li>
+        <li><span>Centro da cidade</span><span class="num">5 min de carro</span></li>
+        <li><span>Rodoviária</span><span class="num">12 min de carro</span></li>
+        <li><span>Aeroporto</span><span class="num">25 min de carro</span></li>
+        <li><span>Orla e restaurantes</span><span class="num">8 min a pé</span></li>
       </ul>
     </div>
     <div class="map">
@@ -359,7 +359,7 @@ footer b{color:#fff;font-family:var(--font-display)}
           <path d="M40 40 L440 60"/><path d="M120 20 L160 190"/><path d="M300 30 L280 200"/><path d="M40 130 L460 140"/>
         </g>
         <g fill="var(--muted)" font-family="Figtree, sans-serif" font-size="12" font-weight="600">
-          <text x="60" y="30">Centro</text><text x="380" y="125">Rodoviária</text><text x="40" y="270">Lago</text>
+          <text x="60" y="30">Centro</text><text x="380" y="125">Rodoviária</text><text x="40" y="270">Rio</text>
         </g>
         <circle cx="290" cy="190" r="26" fill="var(--sun)" opacity=".25"/>
         <path d="M290 160c-12 0-20 9-20 19 0 14 20 31 20 31s20-17 20-31c0-10-8-19-20-19z" fill="var(--forest)"/>
@@ -376,7 +376,7 @@ footer b{color:#fff;font-family:var(--font-display)}
       <p>Área interna onde o dono acompanha pedidos, ocupação e próximos check-ins. Faça um pedido no simulador acima e ele aparece aqui como novo.</p>
     </div>
     <div class="panel-shell">
-      <div class="panel-top"><b>Sítio dos Ipês · Gestão</b><span class="chip">Novembro 2026</span><span class="pill info tag">Dados de exemplo</span></div>
+      <div class="panel-top"><b>Remanso do Rio · Gestão</b><span class="chip">Novembro 2026</span><span class="pill info tag">Dados de exemplo</span></div>
       <div class="tiles">
         <div class="tile"><span>Ocupação do mês</span><b class="num" id="tOcc">—</b> <small>dos quartos-noite</small></div>
         <div class="tile"><span>Receita prevista</span><b class="num" id="tRev">—</b></div>
@@ -422,7 +422,7 @@ footer b{color:#fff;font-family:var(--font-display)}
 
 <footer>
   <div class="wrap">
-    <div><b>Sítio dos Ipês</b><br>Pousada fictícia usada como demonstração.</div>
+    <div><b>Remanso do Rio</b><br>Pousada fictícia usada como demonstração.</div>
     <div><b>Desenvolvido por Kelvin Jordan</b><br>Sites e automação de atendimento</div>
   </div>
 </footer>
@@ -435,7 +435,7 @@ footer b{color:#fff;font-family:var(--font-display)}
 <div class="chat" id="chat" role="dialog" aria-label="Atendimento da pousada">
   <div class="chat-head">
     <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="var(--sun)"/><path d="M6 21c3-2 6-2 10 0s7 2 10 0" stroke="var(--forest)" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
-    <div><b>Atendimento Sítio dos Ipês</b><small>Online agora · responde na hora</small></div>
+    <div><b>Atendimento Remanso</b><small>Online agora · responde na hora</small></div>
     <button id="chatClose" aria-label="Fechar atendimento">×</button>
   </div>
   <div class="msgs" id="msgs"></div>
@@ -445,15 +445,15 @@ footer b{color:#fff;font-family:var(--font-display)}
 
 <script>
 const ROOMS=[
-  {id:"casal",name:"Quarto Casal",price:220,base:2,max:3,size:"20 m²",tags:["Cama de ferro", "Ladrilho hidráulico", "Vista do jardim"],alt:"Quarto casal com cama de ferro antiga, colcha de crochê e janela azul para o jardim"},
-  {id:"familia",name:"Quarto Família",price:320,base:4,max:5,size:"30 m²",tags:["Casal + 2 solteiros", "Pé-direito alto", "Vista do pasto"],alt:"Quarto família com cama de casal, duas camas de solteiro e janelas para o pasto"},
-  {id:"varanda",name:"Suíte do Lago",price:380,base:2,max:3,size:"26 m²",tags:["Varanda para o lago", "Banheira", "Cadeiras de balanço"],alt:"Suíte com banheira e varanda com cadeiras de balanço de frente para o lago"}
+  {id:"casal",name:"Standard Casal",price:180,base:2,max:3,size:"18 m²",tags:["Cama queen","Ar-condicionado","Frigobar"],alt:"Quarto Standard Casal com cama queen, manta verde, ar-condicionado e frigobar"},
+  {id:"familia",name:"Família",price:260,base:4,max:5,size:"28 m²",tags:["Casal + 2 solteiros","Ar-condicionado","Smart TV"],alt:"Quarto Família com cama de casal, duas camas de solteiro, smart TV e ar-condicionado"},
+  {id:"varanda",name:"Suíte com Varanda",price:320,base:2,max:3,size:"26 m²",tags:["Vista para o rio","Rede na varanda","Banheira"],alt:"Suíte com varanda, rede, banheira e vista para o rio e a mata"}
 ];
 const BRL=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
 const $=id=>document.getElementById(id);
 
 function roomPic(r){
-  return `<img class="pic" src="../img/fazenda/quarto-${r.id}.webp" alt="${r.alt}" width="800" height="600" loading="lazy">`;
+  return `<img class="pic" src="../img/demo/quarto-${r.id}.webp" alt="${r.alt}" width="800" height="600" loading="lazy">`;
 }
 
 function renderRooms(){
@@ -486,7 +486,7 @@ function calc(){
   let problem="";
   if(!a||!b) problem="Escolha as datas de check-in e check-out.";
   else if(n<1) problem="O check-out precisa ser depois do check-in.";
-  else if(g>r.max) problem=`O quarto ${r.name} comporta até ${r.max} pessoas. Escolha o Quarto Família ou reduza os hóspedes.`;
+  else if(g>r.max) problem=`O quarto ${r.name} comporta até ${r.max} pessoas. Escolha o quarto Família ou reduza os hóspedes.`;
   const extraG=Math.max(0,g-r.base), extra=n>0?extraG*50*n:0;
   const addons=($("bPet").checked?30:0)+($("bTransfer").checked?40:0);
   const total=n>0?r.price*n+extra+addons:0;
@@ -498,7 +498,7 @@ function calc(){
   $("sDeposit").textContent=total?BRL(Math.round(total*.3)):"—";
   if(problem){err.textContent=problem;err.hidden=false}
   const name=$("bName").value.trim()||"(seu nome)";
-  const msg=`Olá! Gostaria de reservar na Pousada Sítio dos Ipês.
+  const msg=`Olá! Gostaria de reservar na Pousada Remanso do Rio.
 Nome: ${name}
 Quarto: ${r.name}
 Check-in: ${a?fmt(a):"—"} · Check-out: ${b?fmt(b):"—"} (${n>0?n:0} noites)
@@ -529,12 +529,12 @@ $("quickForm").addEventListener("submit",e=>{
 /* Painel */
 const today=new Date(2026,10,3);
 const RES=[
-  {guest:"Mariana L.",room:"Suíte do Lago",a:"2026-11-06",b:"2026-11-08",total:640,status:"Confirmada",cls:"ok"},
-  {guest:"Família Rocha",room:"Quarto Família",a:"2026-11-07",b:"2026-11-10",total:780,status:"Confirmada",cls:"ok"},
-  {guest:"Carlos E.",room:"Quarto Casal",a:"2026-11-12",b:"2026-11-14",total:360,status:"Aguardando sinal",cls:"warn"},
-  {guest:"Patrícia M.",room:"Quarto Casal",a:"2026-11-14",b:"2026-11-16",total:410,status:"Confirmada",cls:"ok"},
-  {guest:"João e Bia",room:"Suíte do Lago",a:"2026-11-20",b:"2026-11-23",total:960,status:"Confirmada",cls:"ok"},
-  {guest:"Grupo Ribeiro",room:"Quarto Família",a:"2026-11-27",b:"2026-11-30",total:930,status:"Aguardando sinal",cls:"warn"}
+  {guest:"Mariana L.",room:"Suíte com Varanda",a:"2026-11-06",b:"2026-11-08",total:640,status:"Confirmada",cls:"ok"},
+  {guest:"Família Rocha",room:"Família",a:"2026-11-07",b:"2026-11-10",total:780,status:"Confirmada",cls:"ok"},
+  {guest:"Carlos E.",room:"Standard Casal",a:"2026-11-12",b:"2026-11-14",total:360,status:"Aguardando sinal",cls:"warn"},
+  {guest:"Patrícia M.",room:"Standard Casal",a:"2026-11-14",b:"2026-11-16",total:410,status:"Confirmada",cls:"ok"},
+  {guest:"João e Bia",room:"Suíte com Varanda",a:"2026-11-20",b:"2026-11-23",total:960,status:"Confirmada",cls:"ok"},
+  {guest:"Grupo Ribeiro",room:"Família",a:"2026-11-27",b:"2026-11-30",total:930,status:"Aguardando sinal",cls:"warn"}
 ];
 const OCC=[2,1,3,4,5,6,8,8,7,3,2,4,5,6,8,7,4,3,2,3,6,8,8,6,3,2,5,7,8,6]; // quartos ocupados por dia (de 8)
 function renderPanel(){
@@ -566,17 +566,17 @@ function renderOcc(){
 
 /* Chat */
 const KB=[
-  {k:["preço","preco","valor","diária","diaria","quanto"],a:()=>`Nossas diárias, com café incluso:\n• Quarto Casal: R$ 220\n• Quarto Família: R$ 320\n• Suíte do Lago: R$ 380\nQuer que eu simule com as suas datas?`,q:["Simular reserva","Formas de pagamento"]},
+  {k:["preço","preco","valor","diária","diaria","quanto"],a:()=>`Nossas diárias, com café incluso:\n• Standard Casal: R$ 180\n• Família (até 5): R$ 260\n• Suíte com Varanda: R$ 320\nQuer que eu simule com as suas datas?`,q:["Simular reserva","Formas de pagamento"]},
   {k:["check-in","checkin","check in","horário","horario","entrada","saída","saida","check-out"],a:()=>"Check-in a partir das 14h e check-out até 12h. Se chegar mais cedo, guardamos sua bagagem sem custo.",q:["Café da manhã","Estacionamento"]},
-  {k:["café","cafe","manhã","manha"],a:()=>"O café da roça é servido das 7h às 10h e está incluso na diária: queijo da casa, pão caseiro, fogão a lenha, ovos e sucos.",q:["Ver preços","Aceita pets?"]},
+  {k:["café","cafe","manhã","manha"],a:()=>"O café regional é servido das 6h30 às 9h30 e está incluso na diária: tapioca, frutas, bolo caseiro, ovos e sucos.",q:["Ver preços","Aceita pets?"]},
   {k:["pet","cachorro","gato","animal"],a:()=>"Aceitamos pets de pequeno porte, com taxa de R$ 30 por estadia. É só avisar na reserva.",q:["Simular reserva","Ver preços"]},
   {k:["estacionamento","carro","vaga","garagem"],a:()=>"Temos estacionamento fechado e gratuito com 8 vagas.",q:["Como chegar","Ver preços"]},
   {k:["wifi","wi-fi","internet"],a:()=>"Wi-Fi de 300 Mb em todos os quartos e áreas comuns. A senha vem no cartão do quarto.",q:["Ver preços"]},
   {k:["pagamento","pagar","pix","cartão","cartao","parcel"],a:()=>"Para confirmar, pedimos sinal de 30% via Pix. O restante pode ser pago no check-in em Pix, débito ou crédito em até 3x.",q:["Cancelamento","Simular reserva"]},
   {k:["cancel"],a:()=>"Cancelando com 7 dias ou mais de antecedência, devolvemos o sinal. Com menos de 7 dias, o sinal vira crédito para outra data em até 6 meses.",q:["Simular reserva"]},
-  {k:["chegar","endereço","endereco","localização","localizacao","onde"],a:()=>"Ficamos na Estrada Vicinal dos Ipês, km 6, Zona Rural. São 15 min do centro e 20 min da rodoviária. Também oferecemos transfer da rodoviária por R$ 40.",q:["Estacionamento","Simular reserva"]},
+  {k:["chegar","endereço","endereco","localização","localizacao","onde"],a:()=>"Ficamos na Rua das Palmeiras, 120, Beira-Rio. São 5 min do centro e 12 min da rodoviária. Também oferecemos transfer da rodoviária por R$ 40.",q:["Estacionamento","Simular reserva"]},
   {k:["criança","crianca","filho","bebê","bebe"],a:()=>"Crianças até 6 anos não pagam no quarto dos pais. A partir de 7 anos contam como hóspede.",q:["Quarto Família","Ver preços"]},
-  {k:["família","familia"],a:()=>"O Quarto Família tem 30 m², cama de casal e 2 de solteiro, para até 5 pessoas. Diária de R$ 320 para 4 pessoas, +R$ 50 para a 5ª.",q:["Simular reserva"]},
+  {k:["família","familia"],a:()=>"O quarto Família tem 28 m², cama de casal e 2 de solteiro, para até 5 pessoas. Diária de R$ 260 para 4 pessoas, +R$ 50 para a 5ª.",q:["Simular reserva"]},
   {k:["simular","reservar","reserva","disponib"],a:()=>{document.getElementById("reservar").scrollIntoView();return "Abri o simulador de reserva na página. Escolha as datas e o quarto que eu monto o pedido para a recepção."},q:["Formas de pagamento","Cancelamento"]},
   {k:["atendente","humano","pessoa","falar com"],a:()=>"Certo! Vou passar sua conversa para a recepção. No site real, aqui abre o WhatsApp da pousada com o seu histórico. Atendimento humano das 7h às 22h.",q:["Ver preços"]}
 ];
@@ -595,7 +595,7 @@ function ask(t){
 let greeted=false;
 function openChat(open){
   $("chat").classList.toggle("open",open);$("chatFab").setAttribute("aria-expanded",open);
-  if(open&&!greeted){greeted=true;addMsg("Olá! Sou o atendente virtual da Sítio dos Ipês. Posso ajudar com preços, horários, pets, pagamento e reservas.","bot");setQR(DEFAULT_Q)}
+  if(open&&!greeted){greeted=true;addMsg("Olá! Sou o atendente virtual da Remanso do Rio. Posso ajudar com preços, horários, pets, pagamento e reservas.","bot");setQR(DEFAULT_Q)}
   if(open) $("chatInput").focus();
 }
 $("chatFab").addEventListener("click",()=>openChat(!$("chat").classList.contains("open")));

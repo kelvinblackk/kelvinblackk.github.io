@@ -1,14 +1,15 @@
 """Gera sites completos (simulador, chat, painel) a partir da demo.
 
-A demo/index.html é o molde: qualquer melhoria nela vale para todos ao rodar `python gen_completos.py`.
+A demo em pousadas/demo/index.html é o molde: qualquer melhoria nela vale para todos ao rodar `python gen_completos.py`.
 Cada troca confere se o trecho existe, para o script falhar alto se a demo mudar.
 """
-import os
 import re
+from pathlib import Path
 
+ROOT = Path(__file__).resolve().parent / "pousadas"
 BASE_URL = "https://kelvinblackk.github.io/pousadas"
 
-MOLDE = open("demo/index.html", encoding="utf-8").read()
+MOLDE = (ROOT / "demo" / "index.html").read_text(encoding="utf-8")
 
 SITES = [
     dict(
@@ -83,7 +84,7 @@ def build(s):
     t = troca(t, '<meta charset="utf-8">', f'''<meta charset="utf-8">
 <meta name="description" content="{description}">
 <link rel="canonical" href="{url}">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <meta property="og:title" content="{s['nome']}">
 <meta property="og:description" content="{description}">
 <meta property="og:image" content="{BASE_URL}/img/{s['slug']}/hero.webp">
@@ -151,6 +152,7 @@ def build(s):
 
 
 for s in SITES:
-    os.makedirs(s["slug"], exist_ok=True)
-    open(f"{s['slug']}/index.html", "w", encoding="utf-8").write(build(s))
+    pasta = ROOT / s["slug"]
+    pasta.mkdir(parents=True, exist_ok=True)
+    (pasta / "index.html").write_text(build(s), encoding="utf-8")
 print("ok")

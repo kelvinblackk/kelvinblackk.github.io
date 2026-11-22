@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kelvinblackk.github.io/pousadas/sitemap.xml
+Sitemap: https://kelvinblackk.github.io/sitemap.xml
