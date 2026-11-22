@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kelvin Jordan · Sites para pousadas</title>
 <meta name="description" content="Sites, atendimento automático no WhatsApp e painel de gestão para pousadas e pequenos negócios de hospedagem.">
+<link rel="canonical" href="https://kelvinblackk.github.io/pousadas/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Kelvin Jordan · Sites para pousadas">
+<meta property="og:description" content="Sites, atendimento automático no WhatsApp e painel de gestão para pousadas e pequenos negócios de hospedagem.">
+<meta property="og:image" content="https://kelvinblackk.github.io/pousadas/img/demo/hero.webp">
+<meta property="og:url" content="https://kelvinblackk.github.io/pousadas/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <script>document.documentElement.classList.add("js")</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,6 +78,11 @@ section{padding:96px 0;position:relative}
   .nav .links a{padding:12px 14px}
   .menu-btn{display:grid;place-items:center}
   .nav>.btn{display:none}
+}
+
+/* skip link */
+.skip-link{position:absolute;top:-100%;left:20px;z-index:100;padding:12px 16px;border-radius:8px;background:var(--forest);color:var(--forest-ink);font-weight:600;text-decoration:none;transition:top .2s}
+.skip-link:focus{top:20px;outline:3px solid var(--sun);outline-offset:2px}
 }
 
 /* abertura */
@@ -263,6 +276,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 </style>
 </head>
 <body>
+<a href="#inicio" class="skip-link">Pular para o conteúdo principal</a>
 
 <header class="nav" id="nav">
   <a class="brand" href="#inicio"><i aria-hidden="true">K</i>Kelvin Jordan</a>
@@ -372,9 +386,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
       </ol>
       <div class="sdots" id="sdots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
       <div class="phone-wrap">
-        <div class="phone" role="img" aria-label="Exemplo de conversa entre hóspede e atendente virtual no WhatsApp">
+        <div class="phone" role="group" aria-label="Exemplo de conversa entre hóspede e atendente virtual no WhatsApp">
           <div class="head"><i aria-hidden="true">R</i><div>Remanso do Rio<small>conta comercial · conversa de exemplo</small></div></div>
-          <div class="chat" id="chat">
+          <div class="chat" id="chat" role="group" aria-label="Conversa entre hóspede e atendente virtual no WhatsApp">
             <div class="msg in" data-s="1">Oi! Vocês aceitam pet?</div>
             <div class="msg out" data-s="1">Aceitamos sim 🐶 Pequeno porte, taxa de R$ 30 por estadia.</div>
             <div class="msg in" data-s="2">Tem quarto pra 2 de 14 a 16 de novembro?</div>
@@ -479,8 +493,8 @@ const fills = $$(".fill").map(el => ({ el, words: split(el) }));
 
 // menu
 const nav = $("#nav"), menuBtn = $("#menuBtn");
-menuBtn.onclick = () => { const o = nav.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", o); };
-$$("#links a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false); }));
+menuBtn.onclick = () => { const o = nav.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", o); document.body.style.overflow = o ? "hidden" : ""; };
+$$("#links a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false); document.body.style.overflow = ""; }));
 const secs = $$("#links a").map(a => [a, $(a.getAttribute("href"))]);
 
 // entrada ao rolar

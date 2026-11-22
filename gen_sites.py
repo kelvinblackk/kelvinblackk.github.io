@@ -72,10 +72,13 @@ LIGHTBOX = """<dialog class="lb" aria-label="Foto em tela cheia">
 })();
 </script>"""
 
+BASE_URL = "https://kelvinblackk.github.io/pousadas"
+
 def brl(v): return f"R$ {v}"
 
 def build(s):
     c = s["c"]
+    description = f'{s["tagline"]}. {s["about"]}'
     font_q = "&".join(f"family={f.replace(' ', '+')}:wght@400;600;700" for f in (s["display"], s["body"]))
     rooms = "".join(f'''<article class="room"><div class="pic"><img src="../img/{s["slug"]}/quarto-{i+1}.webp" alt="{n}: {d}" width="800" height="600" loading="lazy"></div><div class="rb"><h3>{n}</h3><p>{d}</p><div class="pr"><b>{brl(p)}</b><span>/ noite com café</span></div>
 <a class="btn" href="https://wa.me/5595981020209?text={('Olá! Quero saber a disponibilidade do ' + n).replace(' ', '%20')}">Consultar pelo WhatsApp</a></div></article>''' for i, (n, p, d) in enumerate(s["rooms"]))
@@ -85,6 +88,14 @@ def build(s):
     return f'''<!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{s["title"]}</title>
+<meta name="description" content="{description}">
+<link rel="canonical" href="{BASE_URL}/{s['slug']}/">
+<meta property="og:title" content="{s['title']}">
+<meta property="og:description" content="{description}">
+<meta property="og:image" content="{BASE_URL}/img/{s['slug']}/hero.webp">
+<meta property="og:url" content="{BASE_URL}/{s['slug']}/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?{font_q}&display=swap" rel="stylesheet">
 <style>

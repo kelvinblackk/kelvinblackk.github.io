@@ -6,6 +6,8 @@ Cada troca confere se o trecho existe, para o script falhar alto se a demo mudar
 import os
 import re
 
+BASE_URL = "https://kelvinblackk.github.io/pousadas"
+
 MOLDE = open("demo/index.html", encoding="utf-8").read()
 
 SITES = [
@@ -72,6 +74,11 @@ def build(s):
     t = troca(t, "Atendimento Remanso", f"Atendimento {s['curto']}")
     t = troca(t, "<title>Pousada " + s["curto"], "<title>" + s["nome"])
     t = troca(t, "Pousada " + s["curto"] + ".", s["nome"] + ".")  # mensagem do WhatsApp
+
+    description = s["nome"] + ". " + s["lead"]
+    t = troca(t, '<meta charset="utf-8">',
+              '<meta charset="utf-8">\n<meta name="description" content="' + description + '">\n<link rel="canonical" href="' + BASE_URL + '/' + s["slug"] + '/">\n<meta property="og:title" content="' + s["nome"] + '">\n<meta property="og:description" content="' + description + '">\n<meta property="og:image" content="' + BASE_URL + '/img/' + s["slug"] + '/hero.webp">\n<meta property="og:url" content="' + BASE_URL + '/' + s["slug"] + '/">\n<meta property="og:type" content="website">\n<meta name="twitter:card" content="summary_large_image">')
+
     t = troca(t, "family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800", "family=" + s["fonte"][0])
     t = troca(t, '--font-display:"Bricolage Grotesque"', "--font-display:" + s["fonte"][1])
     t = troca(t, "--bg:#F3F6F1;", f"--bg:{c['bg']};")
