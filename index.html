@@ -75,7 +75,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;margin:0;line-height:1.
 p{margin:0}
 a{color:inherit}
 img{display:block;max-width:100%;height:auto}
-:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:8px}
+
 .wrap{max-width:1140px;margin:0 auto;padding:0 20px}
 section{padding:96px 0;position:relative}
 @media (max-width:720px){section{padding:64px 0}}
@@ -111,7 +111,7 @@ section{padding:96px 0;position:relative}
 
 /* skip link */
 .skip-link{position:fixed;top:-100px;left:20px;z-index:100;padding:12px 16px;border-radius:8px;background:var(--forest);color:var(--forest-ink);font-weight:600;text-decoration:none}
-.skip-link:focus{top:20px;outline:3px solid var(--sun);outline-offset:2px}
+.skip-link:focus{top:20px}
 
 #topo-sentinela{position:absolute;top:40px;width:1px;height:1px;pointer-events:none}
 
@@ -301,6 +301,28 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
       .hero::before{animation:glow-drift linear both;animation-duration:auto;animation-timeline:scroll(root);animation-range:0 100vh}
     }
   }
+}
+
+/* Foco pelo teclado */
+:focus-visible{outline:2px solid var(--sun-text);outline-offset:3px;border-radius:10px}
+@supports (color:color-mix(in srgb,red 28%,transparent)){
+  :focus-visible{box-shadow:0 0 0 6px color-mix(in srgb,var(--sun) 28%,transparent)}
+}
+.btn-sun:focus-visible{outline-color:var(--btn-focus-ink,#17201B)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--btn-focus-ink:var(--sun-ink)}}
+:root[data-theme="dark"]{--btn-focus-ink:var(--sun-ink)}
+@supports (selector(:has(:focus-visible))){
+  .proj:has(:focus-visible){outline:2px solid var(--sun-text);outline-offset:4px}
+}
+@media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: view()) and (scale:1){
+    :is(a,button,input,select,textarea):focus-visible{animation:focus-in .18s var(--ease-out)}
+    @keyframes focus-in{from{scale:.985}}
+  }
+}
+@media (forced-colors:active){
+  :focus-visible,.btn-sun:focus-visible{outline-color:Highlight;box-shadow:none}
+  @supports (selector(:has(:focus-visible))){.proj:has(:focus-visible){outline-color:Highlight}}
 }
 </style>
 </head>
