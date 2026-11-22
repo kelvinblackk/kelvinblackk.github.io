@@ -92,7 +92,7 @@ section{padding:96px 0;position:relative}
 .btn svg{width:18px;height:18px;flex:none}
 
 /* menu flutuante */
-.nav{position:fixed;top:14px;left:50%;translate:-50% 0;z-index:50;width:min(1100px,calc(100% - 24px));display:flex;align-items:center;gap:18px;padding:8px 8px 8px 16px;border-radius:999px;background:color-mix(in srgb,var(--surface) 72%,transparent);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border:1px solid color-mix(in srgb,var(--line) 80%,transparent);box-shadow:0 10px 30px -18px rgba(20,33,26,.35)}
+.nav{position:fixed;top:14px;left:50%;translate:-50% 0;z-index:50;width:min(1100px,calc(100% - 24px));display:flex;align-items:center;gap:18px;padding:8px 8px 8px 16px;border-radius:999px;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border:1px solid color-mix(in srgb,var(--line) 80%,transparent);box-shadow:0 10px 30px -18px rgba(20,33,26,.35)}
 .nav.small{top:8px;width:min(860px,calc(100% - 24px))}
 .brand{display:flex;align-items:center;gap:10px;white-space:nowrap;text-decoration:none;font:600 1.15rem var(--font-display)}
 .brand i{width:32px;height:32px;border-radius:10px;background:var(--forest);color:var(--forest-ink);display:grid;place-items:center;font:700 .95rem var(--font-display);font-style:normal}
@@ -170,7 +170,7 @@ section{padding:96px 0;position:relative}
 @media (max-width:720px){.feature .info{padding:26px}.shot{padding:18px 0 0 18px}}
 .feature h3{font-size:clamp(1.7rem,3vw,2.2rem)}
 .feature .info>p{color:var(--muted)}
-.tagline{font-size:.82rem;font-weight:700;color:var(--sun);letter-spacing:.06em;text-transform:uppercase}
+.tagline{font-size:.82rem;font-weight:700;color:var(--sun-text);letter-spacing:.06em;text-transform:uppercase}
 .checks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .checks li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-weight:500}
 .checks li::before{content:"";width:22px;height:22px;border-radius:50%;background:color-mix(in srgb,var(--forest) 16%,transparent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232F7A57' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/13px no-repeat}
@@ -588,6 +588,7 @@ marqueeToggle.hidden = false;
 marqueeToggle.addEventListener("click", () => {
   const paused = $("#fotos-pousadas").classList.toggle("paused");
   marqueeToggle.setAttribute("aria-pressed", paused);
+  marqueeToggle.textContent = paused ? "Retomar fotos" : "Pausar fotos";
 });
 
 // demonstrações em abas
