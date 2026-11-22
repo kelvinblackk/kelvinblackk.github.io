@@ -324,6 +324,22 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
   :focus-visible,.btn-sun:focus-visible{outline-color:Highlight;box-shadow:none}
   @supports (selector(:has(:focus-visible))){.proj:has(:focus-visible){outline-color:Highlight}}
 }
+
+/* Grade de projetos */
+@media (min-width:561px){
+  .proj.compact{display:grid;grid-template-columns:clamp(64px,12vw,120px) minmax(0,1fr);align-items:start}
+  .proj.compact .proj-media{aspect-ratio:1}
+  .proj.compact .proj-body{height:100%;padding:16px;overflow-wrap:anywhere}
+  .proj.compact .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .proj.compact .chips li{flex:none}
+}
+@media (min-width:1001px){
+  .proj-grid{grid-auto-rows:auto}
+  .proj.featured{grid-column:span 4;grid-row:span 2;grid-template-columns:1fr;grid-template-rows:auto 1fr}
+  .proj:not(.featured,.compact){grid-column:span 2;--bento-index:0}
+  .proj:not(.featured,.compact) .proj-body{padding:20px}
+  .proj:not(.featured,.compact) .proj-media{aspect-ratio:2}
+}
 </style>
 </head>
 <body>
@@ -485,7 +501,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
       </article>
       <article class="proj reveal" aria-labelledby="proj-pousadas" style="--i:0">
         <div class="proj-media">
-          <img src="pousadas/img/demo/hero.webp" srcset="img/projetos/pousadas-640.webp 640w, pousadas/img/demo/hero.webp 1376w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="Pousada à beira do rio com varanda e redes" width="1376" height="768" loading="lazy">
+          <img src="pousadas/img/demo/hero.webp" srcset="img/projetos/pousadas-640.webp 640w, pousadas/img/demo/hero.webp 1376w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) calc((100vw - 62px) / 2), (max-width: 1140px) calc((100vw - 84px) / 3), 352px" alt="Pousada à beira do rio com varanda e redes" width="1376" height="768" loading="lazy">
         </div>
         <div class="proj-body">
           <span class="badge">Demo ao vivo</span>
@@ -507,9 +523,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
           <p class="project-note">Pousadas fictícias, fotos ilustrativas geradas por IA.</p>
         </div>
       </article>
-      <article class="proj reveal" aria-labelledby="proj-robo" style="--i:1">
+      <article class="proj reveal" aria-labelledby="proj-robo" style="--i:var(--bento-index,1)">
         <div class="proj-media">
-          <img src="pousadas/robo/img/hero.webp" srcset="pousadas/robo/img/hero-640.webp 640w, pousadas/robo/img/hero.webp 1200w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="Simulador do robô com uma conversa sobre uma reserva" width="1200" height="750" loading="lazy">
+          <img src="pousadas/robo/img/hero.webp" srcset="pousadas/robo/img/hero-640.webp 640w, pousadas/robo/img/hero.webp 1200w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) calc((100vw - 62px) / 2), (max-width: 1140px) calc((100vw - 84px) / 3), 352px" alt="Simulador do robô com uma conversa sobre uma reserva" width="1200" height="750" loading="lazy">
         </div>
         <div class="proj-body">
           <span class="badge">Demo ao vivo</span>
@@ -526,16 +542,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
           </div>
         </div>
       </article>
-      <article class="proj reveal" aria-labelledby="proj-clipforge" style="--i:0">
+      <article class="proj compact reveal" aria-labelledby="proj-clipforge" style="--i:0">
         <div class="proj-media">
-          <img src="img/projetos/clipforge.webp" srcset="img/projetos/clipforge-800.webp 800w, img/projetos/clipforge.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="" width="1600" height="1000" loading="lazy">
+          <img src="img/projetos/clipforge.webp" srcset="img/projetos/clipforge-800.webp 800w, img/projetos/clipforge.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) 12vw, 120px" alt="" width="1600" height="1000" loading="lazy">
         </div>
         <div class="proj-body">
           <span class="badge private">Código privado</span>
           <h3 id="proj-clipforge">ClipForge AI</h3>
           <p><span class="lbl">Problema</span>cortar vídeos longos em clips curtos toma horas de edição.</p>
           <p class="what"><span class="lbl">O que fiz</span>uma estação local que recebe o vídeo, transcreve, usa IA para achar os melhores trechos e exporta os clips prontos para revisar e baixar. Tudo roda no computador, sem pagar API.</p>
-          <ul class="chips" aria-label="Tecnologias">
+          <ul tabindex="0" class="chips" aria-label="Tecnologias">
             <li>Python</li>
             <li>Faster Whisper</li>
             <li>Ollama (IA local)</li>
@@ -543,16 +559,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
           </ul>
         </div>
       </article>
-      <article class="proj reveal" aria-labelledby="proj-video-factory" style="--i:1">
+      <article class="proj compact reveal" aria-labelledby="proj-video-factory" style="--i:1">
         <div class="proj-media">
-          <img src="img/projetos/video-factory.webp" srcset="img/projetos/video-factory-800.webp 800w, img/projetos/video-factory.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="" width="1600" height="1000" loading="lazy">
+          <img src="img/projetos/video-factory.webp" srcset="img/projetos/video-factory-800.webp 800w, img/projetos/video-factory.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) 12vw, 120px" alt="" width="1600" height="1000" loading="lazy">
         </div>
         <div class="proj-body">
           <span class="badge private">Código privado</span>
           <h3 id="proj-video-factory">AI Video Factory</h3>
           <p><span class="lbl">Problema</span>produzir vídeos longos de ranking e comparação leva dias.</p>
           <p class="what"><span class="lbl">O que fiz</span>um pipeline que vai do tema ao MP4: gera o roteiro, busca imagens, narra em português com voz neural e monta o vídeo.</p>
-          <ul class="chips" aria-label="Tecnologias">
+          <ul tabindex="0" class="chips" aria-label="Tecnologias">
             <li>Python</li>
             <li>Google Cloud TTS</li>
             <li>Pexels API</li>
@@ -560,16 +576,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
           </ul>
         </div>
       </article>
-      <article class="proj reveal" aria-labelledby="proj-kell-agente" style="--i:0">
+      <article class="proj compact reveal" aria-labelledby="proj-kell-agente" style="--i:0">
         <div class="proj-media">
-          <img src="img/projetos/kell-agente.webp" srcset="img/projetos/kell-agente-800.webp 800w, img/projetos/kell-agente.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="" width="1600" height="1000" loading="lazy">
+          <img src="img/projetos/kell-agente.webp" srcset="img/projetos/kell-agente-800.webp 800w, img/projetos/kell-agente.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) 12vw, 120px" alt="" width="1600" height="1000" loading="lazy">
         </div>
         <div class="proj-body">
           <span class="badge progress">Em desenvolvimento</span>
           <h3 id="proj-kell-agente">Kell Agente</h3>
           <p><span class="lbl">Problema</span>usar IA em projetos de software sem mandar o código para fora.</p>
           <p class="what"><span class="lbl">O que fiz</span>a base de um agente de engenharia de software que roda com IA local: lê o projeto com segurança, monta o contexto e conversa pelo terminal ou pela web.</p>
-          <ul class="chips" aria-label="Tecnologias">
+          <ul tabindex="0" class="chips" aria-label="Tecnologias">
             <li>Python</li>
             <li>LLMs locais (Ollama, LM Studio)</li>
             <li>API compatível com OpenAI</li>
@@ -577,16 +593,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
           <p class="private-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3m-4 5v2"/></svg> Em desenvolvimento · código privado</p>
         </div>
       </article>
-      <article class="proj reveal" aria-labelledby="proj-assistente" style="--i:1">
+      <article class="proj compact reveal" aria-labelledby="proj-assistente" style="--i:1">
         <div class="proj-media">
-          <img src="img/projetos/assistente.webp" srcset="img/projetos/assistente-800.webp 800w, img/projetos/assistente.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="" width="1600" height="1000" loading="lazy">
+          <img src="img/projetos/assistente.webp" srcset="img/projetos/assistente-800.webp 800w, img/projetos/assistente.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) 12vw, 120px" alt="" width="1600" height="1000" loading="lazy">
         </div>
         <div class="proj-body">
           <span class="badge private">Projeto pessoal</span>
           <h3 id="proj-assistente">Assistente pessoal com IA (Android)</h3>
           <p><span class="lbl">Problema</span>lembretes e tarefas espalhados em vários apps e anotações.</p>
           <p class="what"><span class="lbl">O que fiz</span>um agente de IA no celular que funciona como uma secretária: anoto tudo o que preciso lembrar ou fazer, e ele organiza e me lembra.</p>
-          <ul class="chips" aria-label="Tecnologias">
+          <ul tabindex="0" class="chips" aria-label="Tecnologias">
             <li>Kotlin</li>
             <li>Android</li>
             <li>IA generativa</li>
