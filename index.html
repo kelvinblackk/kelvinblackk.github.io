@@ -20,39 +20,27 @@
 :root{
   --bg:#F5F1E8; --surface:#FFFDF8; --ink:#17201B; --muted:#5E665F; --line:#E4DDCF;
   --forest:#1F4D3A; --forest-ink:#F5F1E8; --sun:#D9822B; --sun-ink:#2A1606; --soft:#EBE4D5;
-  --glow1:#F2C99A; --glow2:#BFD9C6; --dim:#C9C1B2;
+  --glow1:#F2C99A; --glow2:#BFD9C6; --dim:#827963;
   --dark:#14211A; --dark-2:#1C2D24; --dark-ink:#EEF1EC; --dark-muted:#A9B7AE;
   --font-display:"Fraunces",Georgia,serif;
   --font-body:"Manrope","Segoe UI",system-ui,sans-serif;
   --radius:20px;
-  --sun-text:var(--sun);
+  --sun-text:#A8561A;
   --forest-text:var(--forest);
   color-scheme:light;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="dark"]){
-    --sun-text:var(--sun-ink);
-    --forest-text:var(--forest-ink);
-  }
-}
-:root[data-theme="dark"]{
-  --sun-text:var(--sun-ink);
-  --forest-text:var(--forest-ink);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0F1612; --surface:#161F1A; --ink:#EEF1EC; --muted:#A3AEA6; --line:#26322B;
   --forest:#7FC4A1; --forest-ink:#0F1612; --sun:#F0A24A; --sun-ink:#2A1606; --soft:#1C2721;
-  --glow1:#5A3A1C; --glow2:#1D4A36; --dim:#3A463F;
+  --glow1:#5A3A1C; --glow2:#1D4A36; --dim:#78887E;
   --dark:#0B110E; --dark-2:#141D18; color-scheme:dark;
-  --sun-text:var(--sun-ink);
-  --forest-text:var(--forest-ink);}}
+  --sun-text:var(--sun);}}
 :root[data-theme="dark"]{
   --bg:#0F1612; --surface:#161F1A; --ink:#EEF1EC; --muted:#A3AEA6; --line:#26322B;
   --forest:#7FC4A1; --forest-ink:#0F1612; --sun:#F0A24A; --sun-ink:#2A1606; --soft:#1C2721;
-  --glow1:#5A3A1C; --glow2:#1D4A36; --dim:#3A463F;
+  --glow1:#5A3A1C; --glow2:#1D4A36; --dim:#78887E;
   --dark:#0B110E; --dark-2:#141D18; color-scheme:dark;
-  --sun-text:var(--sun-ink);
-  --forest-text:var(--forest-ink);}
+  --sun-text:var(--sun);}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -85,7 +73,7 @@ section{padding:96px 0;position:relative}
 .nav .links a{text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:999px;transition:background .2s,color .2s}
 .nav .links a:hover,.nav .links a.on{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
 .nav .btn{padding:9px 16px;font-size:.86rem;white-space:nowrap}
-.menu-btn{display:none;margin-left:auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--ink)}
+.menu-btn{display:none;margin-left:auto;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--ink)}
 @media (max-width:1000px){
   .nav .links{position:absolute;top:calc(100% + 8px);left:0;right:0;flex-direction:column;padding:10px;border-radius:22px;background:var(--surface);border:1px solid var(--line);box-shadow:0 20px 40px -20px rgba(0,0,0,.4);display:none}
   .nav.open .links{display:flex}
@@ -95,32 +83,25 @@ section{padding:96px 0;position:relative}
 }
 
 /* skip link */
-.skip-link{position:absolute;top:-100%;left:20px;z-index:100;padding:12px 16px;border-radius:8px;background:var(--forest);color:var(--forest-ink);font-weight:600;text-decoration:none;transition:top .2s}
+.skip-link{position:fixed;top:-100px;left:20px;z-index:100;padding:12px 16px;border-radius:8px;background:var(--forest);color:var(--forest-ink);font-weight:600;text-decoration:none;transition:top .2s}
 .skip-link:focus{top:20px;outline:3px solid var(--sun);outline-offset:2px}
-}
 
 /* abertura */
 .hero{padding:150px 0 90px;overflow:hidden;isolation:isolate}
 .hero::before{content:"";position:absolute;inset:-20% -10% auto;height:120%;z-index:-2;background:radial-gradient(40% 45% at 22% 30%,var(--glow1),transparent 70%),radial-gradient(38% 42% at 78% 25%,var(--glow2),transparent 70%);filter:blur(10px);opacity:.85;animation:drift 18s ease-in-out infinite alternate}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(70% 60% at 50% 30%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000 30%,transparent 80%);opacity:.55}
 @keyframes drift{to{transform:translate3d(4%,6%,0) scale(1.08)}}
-.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center}
 @media (max-width:900px){.hero{padding-top:120px}.hero .wrap{grid-template-columns:1fr;gap:44px}}
 .chip-top{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;padding:6px 12px 6px 8px;border-radius:999px;background:color-mix(in srgb,var(--surface) 80%,transparent);border:1px solid var(--line)}
-.chip-top b{width:8px;height:8px;border-radius:50%;background:#2F9E6A;box-shadow:0 0 0 4px rgba(47,158,106,.18);animation:pulse 2s infinite}
+.chip-top b{flex:none;width:8px;height:8px;border-radius:50%;background:#2F9E6A;box-shadow:0 0 0 4px rgba(47,158,106,.18);animation:pulse 2s infinite}
 @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(47,158,106,0)}}
 .hero h1{font-size:clamp(2.5rem,6vw,4.5rem);margin:20px 0 22px}
-.hero h1 em{font-style:italic;color:var(--sun)}
-.hero h1 .w{display:inline-block;opacity:0;transform:translateY(.4em);filter:blur(6px);animation:wordin .7s cubic-bezier(.2,.7,.2,1) forwards}
+.hero h1 em{font-style:italic;color:var(--sun-text)}
+.js .hero h1 .w{display:inline-block;opacity:0;transform:translateY(.4em);filter:blur(6px);animation:wordin .7s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes wordin{to{opacity:1;transform:none;filter:none}}
 .hero .lead{font-size:1.14rem;color:var(--muted);max-width:52ch}
 .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.points{display:flex;flex-wrap:wrap;gap:8px 22px;margin:28px 0 0;padding:0;list-style:none;font-size:.92rem;font-weight:600}
-.points li{display:flex;align-items:center;gap:8px}
-.points li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sun)}
-.collage{position:relative;display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:14px;aspect-ratio:1.08}
-.collage img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius);box-shadow:0 24px 50px -22px rgba(20,33,26,.55);will-change:transform}
-.collage img:first-child{grid-row:span 2}
 .float-card{position:absolute;left:-18px;bottom:22px;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 14px;box-shadow:0 18px 40px -18px rgba(0,0,0,.4);font-size:.85rem;font-weight:600;animation:bob 5s ease-in-out infinite}
 .float-card i{width:30px;height:30px;border-radius:10px;background:#25D366;display:grid;place-items:center;color:#fff;font-style:normal}
 .float-card small{display:block;color:var(--muted);font-weight:500}
@@ -174,7 +155,7 @@ section{padding:96px 0;position:relative}
 .model img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s ease}
 .model:hover img{transform:scale(1.06)}
 .model div{padding:18px 18px 20px;display:grid;gap:6px;flex:1}
-.model small{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.model small{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--c) 63%,var(--ink))}
 .model h3{font-size:1.25rem}
 .model p{color:var(--muted);font-size:.92rem}
 .model .go{margin-top:auto;padding-top:8px;font-weight:700;font-size:.9rem;color:var(--ink)}
@@ -182,16 +163,16 @@ section{padding:96px 0;position:relative}
 /* títulos que acendem com a rolagem */
 .fill .w{color:var(--dim);transition:color .25s ease}
 .fill .w.lit{color:inherit}
-.dark .fill .w{color:#3D4F45}
+.dark .fill .w{color:#78887E}
 .dark .fill .w.lit{color:var(--dark-ink)}
 
 /* automação */
-.dark{background:var(--dark);color:var(--dark-ink)}
+.dark{--sun-text:#F0A24A;background:var(--dark);color:var(--dark-ink)}
 .dark .sec-head p{color:var(--dark-muted)}
 .auto{display:grid;grid-template-columns:1fr 390px;gap:64px;align-items:start}
 @media (max-width:960px){.auto{grid-template-columns:1fr;gap:36px}}
 .steps{list-style:none;margin:0;padding:0;display:grid;counter-reset:s}
-.steps li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,.08);opacity:.4;transition:opacity .4s ease}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,.08);opacity:.82;transition:opacity .4s ease}
 .steps li.on{opacity:1}
 .steps li:last-child{border-bottom:0}
 .steps li::before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:12px;background:var(--dark-2);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;font:600 1.05rem var(--font-display);color:var(--sun);transition:background .3s,color .3s}
@@ -216,7 +197,7 @@ section{padding:96px 0;position:relative}
   .phone .head{padding:6px 10px 10px}
   .steps{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -20px;padding:4px 20px 6px;scroll-padding:0 20px}
   .steps::-webkit-scrollbar{display:none}
-  .steps li{flex:0 0 82%;scroll-snap-align:start;grid-template-columns:40px 1fr;padding:18px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:var(--dark-2);opacity:.55;transition:opacity .3s,border-color .3s}
+  .steps li{flex:0 0 82%;scroll-snap-align:start;grid-template-columns:40px 1fr;padding:18px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:var(--dark-2);opacity:.82;transition:opacity .3s,border-color .3s}
   .steps li:last-child{border-bottom:1px solid rgba(255,255,255,.1)}
   .steps li.cur{opacity:1;border-color:var(--sun)}
   .swipe-hint{display:block;font-size:.85rem;color:var(--dark-muted);margin:0}
@@ -264,64 +245,151 @@ section{padding:96px 0;position:relative}
 .process span{color:var(--muted);font-size:.95rem}
 
 /* contato */
-.contact{background:var(--dark);color:var(--dark-ink);border-radius:32px;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr;position:relative}
+.contact{--sun-text:#F0A24A;background:var(--dark);color:var(--dark-ink);border-radius:32px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);position:relative}
 @media (max-width:860px){.contact{grid-template-columns:1fr}}
-.contact .txt{padding:56px;display:grid;gap:18px;align-content:center;position:relative;z-index:1}
+.contact .txt{padding:clamp(24px,4vw,56px);display:grid;gap:18px;align-content:center;position:relative;z-index:1}
 .contact .txt::before{content:"";position:absolute;inset:-40% auto auto -20%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(240,162,74,.25),transparent 65%);z-index:-1}
-@media (max-width:720px){.contact .txt{padding:30px}}
 .contact h2{font-size:clamp(2rem,4vw,3rem)}
 .contact p{color:var(--dark-muted);max-width:46ch}
-.contact .num{font:600 1.15rem var(--font-body);letter-spacing:.02em}
-.contact img{width:100%;height:100%;min-height:260px;object-fit:cover}
 footer{padding:36px 0 44px;color:var(--muted);font-size:.88rem}
 footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 
-/* Portfólio pessoal — Sobre, projetos e serviços */
-.hero .wrap{grid-template-columns:1.15fr .85fr}
-.hero-img{width:100%;max-width:440px;aspect-ratio:4/5;object-fit:cover;object-position:center;border-radius:28px;background:#0B0D10;box-shadow:0 40px 80px -30px rgba(20,33,26,.55);justify-self:end}
-.hero h1 em{color:var(--sun-text)}
+/* Portfólio pessoal */
 .eyebrow,.tagline{color:var(--sun-text)}
-.hero .float-card{left:auto;right:calc(min(440px,100%) - 28px);bottom:28px;z-index:2}
-.hero .wrap{position:relative}
-@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero-img{justify-self:center;max-width:340px}.hero .actions{display:grid}.hero .actions .btn{width:100%}.hero .float-card{right:calc(50% - 160px);bottom:16px}}
-.skip-link{position:fixed;top:-100px;left:16px}
-.skip-link:focus{top:16px}
-#conteudo{scroll-margin-top:90px}
-.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:start}
+.hero-portrait{position:relative;justify-self:end;width:100%;max-width:440px;isolation:isolate}
+.hero-portrait::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:28px;transform:translate(24px,24px);background:color-mix(in srgb,var(--forest) 18%,transparent)}
+:root[data-theme="dark"] .hero-portrait::before{background:color-mix(in srgb,var(--forest) 22%,transparent)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero-portrait::before{background:color-mix(in srgb,var(--forest) 22%,transparent)}}
+.hero-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:28px;background:#0B0D10;box-shadow:0 40px 80px -30px rgba(20,33,26,.55)}
+.hero .float-card{z-index:1}
+.hero .float-card i{background:var(--soft);color:var(--forest)}
+.hero .float-card svg{width:18px;height:18px}
+@media(max-width:900px){
+  .hero-portrait{justify-self:center;max-width:340px}
+  .hero-portrait::before{transform:translate(12px,16px)}
+  .hero .float-card{left:8px;bottom:16px}
+}
+@media(max-width:420px){.hero .actions .btn{width:100%}}
+
+.about-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:64px;align-items:start}
+.about-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.about-head h2{margin-top:12px}
+.about-head img{width:68px;border-radius:14px}
 .about-copy{display:grid;gap:16px;max-width:60ch;color:var(--muted);font-size:1.06rem}
 .about-copy strong{color:var(--ink)}
 .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0}
-.stat{display:flex;flex-direction:column-reverse;padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
-.stat dt{color:var(--muted);font-size:.9rem;font-weight:600}.stat dd{margin:0;color:var(--forest-text);font:600 clamp(2.2rem,4vw,3rem) var(--font-display);line-height:1.15}
-.stack{margin-top:48px}.stack h3{font-size:1.3rem;margin-bottom:20px}.stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:20px 28px}.stack-group{display:grid;gap:10px}.stack-group .tier,.proj .tier{font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}.chips li{display:inline-flex;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font:600 .86rem var(--font-body)}.stack-group.focus .chips li{background:color-mix(in srgb,var(--forest) 10%,var(--surface))}
-.proj-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}.proj{grid-column:span 3;display:flex;flex-direction:column;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);transition:transform .25s ease,box-shadow .25s ease}.proj.featured{grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr}.proj:hover,.proj:focus-within{transform:translateY(-4px);box-shadow:0 26px 50px -26px rgba(20,33,26,.35)}.proj-media{aspect-ratio:16/10;overflow:hidden;background:var(--soft);position:relative}.proj-media>img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease}.proj:hover .proj-media>img{transform:scale(1.04)}.proj-body{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1}.proj h3{font-size:1.3rem}.proj.featured h3{font-size:1.7rem}.proj p{font-size:.95rem}.proj .what{color:var(--muted)}.lbl{display:block;margin-bottom:3px;color:var(--muted);font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.proj .chips{gap:6px}.proj .chips li{padding:4px 10px;font-size:.78rem}.badge{align-self:flex-start;padding:4px 10px;border-radius:999px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:color-mix(in srgb,var(--forest) 14%,var(--surface));color:var(--forest-text)}.badge.private{background:var(--soft);color:var(--muted)}.badge.progress{background:color-mix(in srgb,var(--sun) 16%,var(--surface));color:var(--sun-text)}.project-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}.project-actions a{display:inline-flex;align-items:center;min-height:44px;padding:10px 8px;color:var(--ink);font-size:.9rem;font-weight:700;text-decoration:none}.project-actions a:hover{text-decoration:underline;text-underline-offset:4px}.project-note{font-size:.8rem!important;color:var(--muted)}.private-note{margin-top:auto;padding-top:12px;color:var(--muted);font-size:.85rem}
-.cover-icon{display:grid;place-items:center;background:radial-gradient(60% 80% at 30% 20%,var(--glow1),transparent 70%),radial-gradient(50% 70% at 80% 80%,var(--glow2),transparent 70%),var(--soft)}.cover-icon::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:28px 28px;opacity:.4}.icon-tile{position:relative;width:72px;height:72px;border-radius:20px;background:var(--surface);border:1px solid var(--line);box-shadow:0 12px 30px -16px rgba(0,0,0,.35);display:grid;place-items:center;color:var(--forest-text);transition:transform .4s}.cover-icon:hover .icon-tile{transform:translateY(-4px)}.icon-tile svg{width:32px;height:32px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.juliane-media{background:var(--soft);padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;min-width:0}.browser-shot{overflow:hidden;border-radius:14px;background:#fff;box-shadow:0 20px 40px -20px rgba(20,33,26,.5)}.browser-shot .bar2{display:flex;gap:5px;padding:8px;background:#ECE7DC}.browser-shot .bar2 i{width:8px;height:8px;border-radius:50%;background:#D3CCBD}.browser-shot img{width:100%;height:auto;aspect-ratio:1901/690;object-fit:cover}.device-shot{background:#0B141A;border:5px solid #0B141A;border-radius:22px;overflow:hidden;box-shadow:0 20px 40px -20px rgba(20,33,26,.5);justify-self:center;max-width:185px}.device-shot img{width:100%;height:auto;aspect-ratio:398/705;object-fit:cover}.juliane-media figcaption{grid-column:1/-1;text-align:center;color:var(--muted);font-size:.78rem}.mobile-hint{display:none}
-.services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.service{padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);transition:transform .25s,box-shadow .25s}.service:hover{transform:translateY(-6px);box-shadow:0 26px 50px -28px rgba(20,33,26,.4)}.service-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:color-mix(in srgb,var(--forest) 12%,var(--surface));color:var(--forest-text);margin-bottom:14px}.service-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.service h3{font-size:1.15rem}.bridge{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--soft);border-radius:20px;padding:20px 24px;margin-top:22px}.bridge a{font-weight:700}
-.contact-channels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none}.contact-channels a{min-height:64px;display:flex;flex-direction:column;justify-content:center;padding:10px 14px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.04);text-decoration:none;transition:border-color .2s,transform .2s}.contact-channels a:hover{border-color:var(--sun);transform:translateY(-2px)}.contact-channels small{color:var(--dark-muted);font-size:.76rem;text-transform:uppercase;letter-spacing:.06em}.contact-channels .whats{background:var(--sun);border-color:var(--sun);color:var(--sun-ink)}.contact-channels .whats small{color:var(--sun-ink)}.contact .portrait{object-position:50% 25%}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-#pousadas>.wrap>.sec-head{margin-bottom:42px}
-@media(max-width:1000px){.proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.proj.featured{grid-column:1/-1;grid-template-columns:1fr}.services{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:860px){.contact{grid-template-columns:1fr}.contact .portrait{display:none}}
-@media(max-width:720px){.about-grid{grid-template-columns:1fr;gap:30px}.stat{padding:18px}.contact-channels{grid-template-columns:1fr}.services{grid-template-columns:1fr}}
-@media(max-width:560px){.proj-grid{grid-template-columns:1fr}.proj,.proj.featured{grid-column:1;display:flex}.proj-body{padding:18px}.juliane-media{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;margin:0 -18px;padding:18px;scroll-padding:18px}.juliane-media>*{flex:0 0 82%;scroll-snap-align:start}.juliane-media .device-shot{flex-basis:70%;max-width:220px}.juliane-media figcaption{flex-basis:100%}.mobile-hint{display:block;color:var(--muted);font-size:.82rem}}
-@media(prefers-reduced-motion:reduce){.proj:hover,.proj:focus-within,.service:hover,.contact-channels a:hover{transform:none}.proj:hover .proj-media>img{transform:none}}
+.stat{display:flex;flex-direction:column-reverse;justify-content:flex-end;padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.stat dt{color:var(--muted);font-size:.9rem;font-weight:600}
+.stat dd{margin:0;color:var(--forest-text);font:600 clamp(2.2rem,4vw,3rem)/1.15 var(--font-display)}
+.stack{margin-top:48px}
+.stack h3{font-size:1.3rem;margin-bottom:20px}
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:20px 28px}
+.stack-group{display:grid;gap:10px;align-content:start}
+.stack-group .tier{font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{display:inline-flex;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font:600 .86rem var(--font-body)}
+.stack-group.focus .chips li{background:color-mix(in srgb,var(--forest) 10%,var(--surface))}
+
+.proj-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.proj{grid-column:span 3;display:flex;flex-direction:column;min-width:0;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.proj.featured{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.proj:is(:hover,:focus-within){translate:0 -4px;box-shadow:0 26px 50px -26px rgba(20,33,26,.35)}
+.proj-media{aspect-ratio:16/10;overflow:hidden;background:var(--soft)}
+.proj-media img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
+.proj:is(:hover,:focus-within) .proj-media img{transform:scale(1.04)}
+.proj-body{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1;min-width:0}
+.featured .proj-body{padding:40px;justify-content:center}
+.proj h3{font-size:1.3rem}
+.proj.featured h3{font-size:1.7rem}
+.proj p{font-size:.95rem}
+.proj .what{color:var(--muted)}
+.lbl{display:block;margin-bottom:3px;color:var(--muted);font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.proj .chips{gap:6px}
+.proj .chips li{padding:4px 10px;font-size:.78rem}
+.badge{align-self:flex-start;padding:4px 10px;border-radius:999px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:color-mix(in srgb,var(--forest) 14%,var(--surface));color:var(--forest-text)}
+.badge.private{background:var(--soft);color:var(--muted)}
+.badge.progress{background:color-mix(in srgb,var(--sun) 12%,var(--surface));color:var(--sun-text)}
+.project-actions{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:auto;padding-top:6px;border-top:1px solid var(--line)}
+.project-actions a{display:inline-flex;gap:4px;align-items:center;min-height:44px;font-size:.9rem;font-weight:700;text-decoration:none}
+.project-actions a:is(:hover,:focus-visible){text-decoration:underline;text-underline-offset:4px}
+.project-actions a [aria-hidden]{transition:transform .2s}
+.project-actions a:is(:hover,:focus-visible) [aria-hidden]{transform:translateX(3px)}
+.proj .project-note,.proj .private-note{color:var(--muted);font-size:.85rem}
+.private-note{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
+.private-note svg{width:16px;height:16px;flex:none}
+
+.juliane-media{display:grid;align-content:center;gap:12px;margin:0;padding:28px;background:var(--soft);min-width:0}
+.juliane-shots{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:16px;align-items:center;max-width:540px;width:100%;margin-inline:auto}
+.browser-shot{overflow:hidden;border-radius:12px;background:#fff;box-shadow:0 24px 60px -20px rgba(20,33,26,.5)}
+.browser-shot .bar2{display:flex;gap:5px;padding:6px 8px;background:#ECE7DC}
+.browser-shot .bar2 span{width:7px;height:7px;border-radius:50%;background:#D3CCBD}
+.browser-shot img,.device-shot img{width:100%}
+.device-shot{grid-area:1/2/span 2;background:#0B141A;border:6px solid #0B141A;border-radius:18px;overflow:hidden;box-shadow:0 24px 60px -20px rgba(20,33,26,.5)}
+.juliane-media figcaption,.juliane-media .mobile-hint{text-align:center;color:var(--muted);font-size:.78rem}
+.mobile-hint{display:none}
+
+.services{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.service{padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.service:hover{translate:0 -6px;box-shadow:0 26px 50px -28px rgba(20,33,26,.4)}
+.service-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:color-mix(in srgb,var(--forest) 12%,var(--surface));color:var(--forest-text);margin-bottom:14px}
+.service-icon svg{width:24px;height:24px}
+.service h3{font-size:1.15rem;text-wrap:pretty}
+.bridge{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--soft);border-radius:20px;padding:20px 24px;margin-top:22px}
+
+.contact-channels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.contact-channels a{min-height:64px;display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.04);text-decoration:none;font-weight:600;overflow-wrap:anywhere;transition:border-color .2s}
+.contact-channels a:is(:hover,:focus-visible){border-color:var(--sun)}
+.contact-channels svg{width:20px;height:20px;flex:none;transition:transform .2s}
+.contact-channels a:is(:hover,:focus-visible) svg{transform:translateY(-2px)}
+.contact-channels small{display:block;color:var(--dark-muted);font-size:.76rem;text-transform:uppercase;letter-spacing:.06em}
+.contact-channels .whats{background:var(--sun);border-color:var(--sun);color:var(--sun-ink)}
+.contact-channels .whats small{color:var(--sun-ink)}
+.contact .portrait{position:absolute;inset:0 0 0 auto;width:calc(100% / 2.35);height:100%;object-fit:cover;object-position:50% 25%}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.pousadas-intro .sec-head{margin-bottom:42px}
+
+@media(max-width:1000px){
+  .proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .proj{grid-column:span 1}
+  .proj.featured{grid-template-columns:1fr}
+  .services{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:860px){.contact .portrait{display:none}}
+@media(max-width:720px){
+  .about-grid{grid-template-columns:1fr;gap:30px}
+  .stat{padding:18px}
+  .contact-channels{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .proj-grid,.services{grid-template-columns:1fr}
+  .proj-body,.featured .proj-body{padding:18px}
+  .juliane-media{padding:12px 0 18px}
+  .juliane-shots{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding:12px 18px 18px;scroll-padding-inline:18px;overscroll-behavior-inline:contain}
+  .juliane-shots:focus-visible{outline-offset:-3px}
+  .juliane-shots>*{flex:0 0 70%;scroll-snap-align:start}
+  .mobile-hint{display:block}
+}
+@media(prefers-reduced-motion:reduce){
+  .proj:is(:hover,:focus-within),.service:hover{translate:none}
+  .proj:is(:hover,:focus-within) .proj-media img,.contact-channels a:is(:hover,:focus-visible) svg,.project-actions a:is(:hover,:focus-visible) [aria-hidden]{transform:none}
+}
 
 /* entrada ao rolar */
 .js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 90ms)}
 .js .reveal.in{opacity:1;transform:none}
+.js :is(.proj,.service).reveal.in{transition:opacity .8s ease,transform .8s ease,translate .25s ease,box-shadow .25s ease;transition-delay:calc(var(--i,0) * 90ms),calc(var(--i,0) * 90ms),0s,0s}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .hero h1 .w,.reveal{opacity:1;transform:none;filter:none}
-  .fill .w{color:inherit}
+  .js .hero h1 .w,.js .reveal{opacity:1;transform:none;filter:none}
+  :is(.fill,.dark .fill) .w{color:inherit}
   .msg,.note{display:block}
 }
 </style>
 </head>
 <body>
-<a href="#inicio" class="skip-link">Pular para o conteúdo principal</a>
+<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 
 <header class="nav" id="nav">
   <a class="brand" href="#inicio"><i aria-hidden="true">K</i>Kelvin Jordan</a>
@@ -330,89 +398,107 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
   <a class="btn btn-primary" href="https://wa.me/5595981020209">Falar no WhatsApp</a>
 </header>
 
-<main id="inicio">
-<section class="hero">
+<main id="conteudo" tabindex="-1">
+<section id="inicio" class="hero">
   <div class="wrap">
     <div>
-      <span class="chip-top"><b aria-hidden="true"></b>Desenvolvimento web · Automação com IA · Infraestrutura de TI</span>
-      <h1 id="heroTitle">Do problema ao projeto funcionando, com tecnologia e IA.</h1>
+      <span class="chip-top"><b aria-hidden="true"></b><span>Desenvolvimento&nbsp;web · Automação&nbsp;com&nbsp;IA · Infraestrutura&nbsp;de&nbsp;TI</span></span>
+      <h1 id="heroTitle">Do problema ao projeto <em>funcionando</em>, com tecnologia e IA.</h1>
       <p class="lead reveal">Sou Kelvin Jordan, empreendedor e técnico em TI em Boa Vista (RR). Crio sites, sistemas, robôs de WhatsApp e automações com IA, e cuido do que fica por trás: redes, câmeras e elétrica.</p>
       <div class="actions reveal" style="--i:1">
         <a class="btn btn-primary" href="#projetos">Ver projetos</a>
-        <a class="btn" href="https://wa.me/5595981020209">Falar no WhatsApp</a>
+        <a class="btn" href="https://wa.me/5595981020209"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3Z"/></svg>Falar no WhatsApp</a>
       </div>
     </div>
-    <img src="img/kelvin/kelvin-800.webp" srcset="img/kelvin/kelvin-480.webp 480w, img/kelvin/kelvin-800.webp 800w" sizes="(max-width:720px) 85vw, 420px" alt="Kelvin Jordan, de terno azul e óculos" width="800" height="1000" fetchpriority="high" loading="eager" class="hero-img">
+    <div class="hero-portrait">
+      <img src="img/kelvin/kelvin-800.webp" srcset="img/kelvin/kelvin-480.webp 480w, img/kelvin/kelvin-800.webp 800w" sizes="(max-width: 900px) 340px, 440px" alt="Kelvin Jordan, de terno azul e óculos" width="800" height="1000" fetchpriority="high" class="hero-img">
+      <div class="float-card"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11s-8-6-8-11a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></i><div>Boa Vista (RR)<small>Atendo todo o Brasil</small></div></div>
+    </div>
   </div>
 </section>
 
-<div class="marquee" aria-label="Fotos dos sites de exemplo">
-  <div class="track">
-    <figure><img src="img/mar/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Maré Mansa</figcaption></figure>
-    <figure><img src="img/serra/quarto-1.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Cantinho da Serra</figcaption></figure>
-    <figure><img src="img/chapada/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Vale das Águas</figcaption></figure>
-    <figure><img src="img/colonial/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Casarão Colonial</figcaption></figure>
-    <figure><img src="img/fazenda/quarto-casal.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Sítio dos Ipês</figcaption></figure>
-    <figure><img src="img/mata/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Recanto da Mata</figcaption></figure>
-    <figure><img src="img/demo/quarto-varanda.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Remanso do Rio</figcaption></figure>
-    <figure><img src="img/mar/galeria-2.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Maré Mansa</figcaption></figure>
-  </div>
-  <div class="track" data-dir="-1">
-    <figure><img src="img/fazenda/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Sítio dos Ipês</figcaption></figure>
-    <figure><img src="img/colonial/galeria-1.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Casarão Colonial</figcaption></figure>
-    <figure><img src="img/chapada/quarto-varanda.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Vale das Águas</figcaption></figure>
-    <figure><img src="img/mata/galeria-2.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Recanto da Mata</figcaption></figure>
-    <figure><img src="img/serra/galeria-1.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Cantinho da Serra</figcaption></figure>
-    <figure><img src="img/demo/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Remanso do Rio</figcaption></figure>
-    <figure><img src="img/mar/quarto-3.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Maré Mansa</figcaption></figure>
-    <figure><img src="img/fazenda/quarto-varanda.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Sítio dos Ipês</figcaption></figure>
-  </div>
-</div>
-
 <section id="sobre">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Sobre</span><h2 class="fill">Sobre mim</h2></div>
-    <div class="reveal">
-      <p>Sou Kelvin Jordan, empreendedor e técnico em TI em Boa Vista (RR). Crio sites, sistemas, robôs de WhatsApp e automações com IA. Trabalho com desenvolvimento web completo, infraestrutura de TI e soluções de automação para pequenos negócios e pousadas.</p>
-      <p><strong>K&J Negócios</strong> — atuo desde 2008 na tecnologia, com projetos de CFTV/IP, redes, automação residencial e desenvolvimento de sistemas personalizados.</p>
-      <p>Hábito de olhar o que funciona e melhorar o que não funciona, sempre pensando na experiência do usuário final.</p>
+    <div class="about-grid">
+      <div>
+        <div class="sec-head about-head">
+          <div><span class="eyebrow">Sobre</span><h2 class="fill">Sobre mim</h2></div>
+          <img src="img/kelvin/kelvin-480.webp" alt="" width="480" height="600" loading="lazy">
+        </div>
+        <div class="about-copy reveal">
+          <p>Comecei em 2008, num curso de manutenção de computadores no SENAI. Depois vieram as redes, as câmeras, a elétrica e, por fim, o código. Hoje toco a <strong>K&amp;J Negócios</strong>, onde já implantei mais de 15 projetos de CFTV/IP e atendi mais de 50 clientes.</p>
+          <p>Nos freelas, uso IA para entregar rápido o que antes pedia uma equipe inteira: sites completos, sistemas de gestão, robôs de atendimento e ferramentas de vídeo. Entendo <strong>do cabo ao código</strong>, então consigo resolver o problema inteiro, não só uma parte dele.</p>
+          <p>Estou cursando Análise e Desenvolvimento de Sistemas (UNINTER) e tenho mais de 30 certificações em TI e segurança eletrônica.</p>
+        </div>
+      </div>
+      <dl class="stats reveal">
+        <div class="stat"><dt>projetos de CFTV/IP</dt><dd data-count="15">15+</dd></div>
+        <div class="stat"><dt>clientes atendidos</dt><dd data-count="50">50+</dd></div>
+        <div class="stat"><dt>certificações</dt><dd data-count="30">30+</dd></div>
+        <div class="stat"><dt>na tecnologia desde</dt><dd>2008</dd></div>
+      </dl>
     </div>
     <div class="stack reveal">
       <h3>O que eu uso</h3>
       <div class="stack-grid">
-        <div class="stack-group">
-          <span class="tier">IA e automação</span>
-          <ul class="chips">
-            <li>Claude Sonnet 5</li>
-            <li>Claude</li>
-            <li>Midjourney</li>
-            <li>GitHub Copilot</li>
-          </ul>
-        </div>
-        <div class="stack-group">
+        <div class="stack-group focus">
           <span class="tier">Web e sistemas</span>
           <ul class="chips">
             <li>HTML</li>
             <li>CSS</li>
             <li>JavaScript</li>
+            <li>TypeScript</li>
+            <li>React</li>
+            <li>Next.js</li>
+            <li>Tailwind CSS</li>
+          </ul>
+        </div>
+        <div class="stack-group">
+          <span class="tier">Back-end e dados</span>
+          <ul class="chips">
             <li>Python</li>
+            <li>FastAPI</li>
+            <li>Supabase</li>
+            <li>PostgreSQL</li>
+          </ul>
+        </div>
+        <div class="stack-group focus">
+          <span class="tier">IA e automação</span>
+          <ul class="chips">
+            <li>IA generativa (Gemini, LLMs locais com Ollama)</li>
+            <li>Faster Whisper</li>
+            <li>Google Cloud TTS</li>
+            <li>robôs de WhatsApp (Cloud API)</li>
+          </ul>
+        </div>
+        <div class="stack-group">
+          <span class="tier">Vídeo</span>
+          <ul class="chips">
+            <li>FFmpeg</li>
+            <li>pipelines de edição automática</li>
+          </ul>
+        </div>
+        <div class="stack-group">
+          <span class="tier">Mobile</span>
+          <ul class="chips">
+            <li>Android (Kotlin)</li>
+          </ul>
+        </div>
+        <div class="stack-group">
+          <span class="tier">Publicação</span>
+          <ul class="chips">
+            <li>Vercel</li>
+            <li>GitHub Pages</li>
+            <li>Git/GitHub</li>
           </ul>
         </div>
         <div class="stack-group">
           <span class="tier">Infraestrutura</span>
           <ul class="chips">
-            <li>Linux</li>
-            <li>Docker</li>
-            <li>Git</li>
-            <li>NGINX</li>
-          </ul>
-        </div>
-        <div class="stack-group">
-          <span class="tier">Ferramentas</span>
-          <ul class="chips">
-            <li>Figma</li>
-            <li>PostgreSQL</li>
-            <li>GitLab</li>
+            <li>redes TCP/IP e Wi-Fi</li>
+            <li>CFTV IP (Intelbras)</li>
+            <li>hardware</li>
+            <li>elétrica de baixa tensão</li>
           </ul>
         </div>
       </div>
@@ -422,180 +508,151 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 
 <section id="projetos">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Projetos</span><h2 class="fill">Projetos</h2></div>
-    <p>Seleção de projetos recentes e em andamento.</p>
-    <div class="proj-grid" id="projGrid">
-      <!-- Sites para pousadas -->
-      <article class="proj reveal" style="--i:0">
-        <div class="proj-media"><img src="img/demo/hero.webp" alt="Página inicial de pousada com foto de chalés e varanda" width="1376" height="768" loading="lazy"></div>
+    <div class="sec-head"><span class="eyebrow">Projetos</span><h2 class="fill">Projetos</h2><p class="reveal">Alguns trabalhos, do site ao sistema completo. Cada um resolve um problema real.</p></div>
+    <div class="proj-grid">
+      <article class="proj featured reveal" aria-labelledby="proj-juliane" style="--i:0">
+        <figure class="juliane-media">
+          <div class="juliane-shots" role="region" aria-label="Telas do Juliane ERP" tabindex="0">
+            <div class="device-shot">
+              <img src="img/projetos/juliane/juliane-inicio-mobile.webp" alt="Tela de início do Juliane ERP no celular" width="398" height="705" loading="lazy">
+            </div>
+            <div class="browser-shot">
+              <div class="bar2" aria-hidden="true"><span></span><span></span><span></span></div>
+              <img src="img/projetos/juliane/juliane-login.webp" alt="Tela de login do Juliane ERP" width="1919" height="942" loading="lazy">
+            </div>
+            <div class="browser-shot">
+              <div class="bar2" aria-hidden="true"><span></span><span></span><span></span></div>
+              <img src="img/projetos/juliane/juliane-inicio-desktop.webp" alt="Tela de início do Juliane ERP no computador" width="1901" height="690" loading="lazy">
+            </div>
+          </div>
+          <p class="mobile-hint">Deslize para ver as telas <span aria-hidden="true">→</span></p>
+          <figcaption>Valores ocultados para preservar os dados da loja.</figcaption>
+        </figure>
         <div class="proj-body">
-          <span class="selo">Demo ao vivo</span>
-          <h3>Sites para pousadas</h3>
-          <p><strong>Problema:</strong> Pousadas pequenas perdem reservas por não ter um site profissional.</p>
-          <p><strong>O que fiz:</strong> Criei modelos de site com fotos, quartos, preços e WhatsApp integrado.</p>
-          <ul class="chips">
+          <span class="badge">Sistema em uso</span>
+          <h3 id="proj-juliane">Juliane ERP</h3>
+          <p><span class="lbl">Problema</span>uma loja controlava estoque, vendas e contas no papel e no improviso.</p>
+          <p class="what"><span class="lbl">O que fiz</span>um sistema de gestão feito para o celular, com produtos com foto, estoque, vendas (à vista e a prazo), kits, fluxo de caixa, contas a pagar e receber, relatórios em CSV e login individual que registra quem fez cada movimentação.</p>
+          <ul class="chips" aria-label="Tecnologias">
+            <li>Next.js</li>
+            <li>React</li>
+            <li>TypeScript</li>
+            <li>Tailwind CSS</li>
+            <li>Supabase</li>
+            <li>Vercel</li>
+          </ul>
+          <p class="private-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3m-4 5v2"/></svg> Sistema de cliente: sem link público.</p>
+        </div>
+      </article>
+      <article class="proj reveal" aria-labelledby="proj-pousadas" style="--i:0">
+        <div class="proj-media">
+          <img src="img/demo/hero.webp" srcset="img/projetos/pousadas-640.webp 640w, img/demo/hero.webp 1376w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="Pousada à beira do rio com varanda e redes" width="1376" height="768" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <span class="badge">Demo ao vivo</span>
+          <h3 id="proj-pousadas">Sites para pousadas</h3>
+          <p><span class="lbl">Problema</span>pousadas pequenas dependem de plataformas de reserva que cobram comissão.</p>
+          <p class="what"><span class="lbl">O que fiz</span>8 modelos de site (serra, mar, colonial, mata, chapada, fazenda, recanto, cantinho), do simples ao completo com simulador de reserva e chat. Um script em Python gera os sites a partir de um molde, e as fotos são criadas por IA e comprimidas automaticamente.</p>
+          <ul class="chips" aria-label="Tecnologias">
             <li>HTML</li>
             <li>CSS</li>
             <li>JavaScript</li>
-            <li>WhatsApp API</li>
-          </ul>
-        </div>
-        <div class="proj-footer">
-          <a href="#pousadas">Ver as demos →</a>
-          <a href="https://github.com/kelvinblackk/pousadas" target="_blank" rel="noopener">GitHub ↗</a>
-        </div>
-      </article>
-
-      <!-- Robô WhatsApp -->
-      <article class="proj reveal" style="--i:1">
-        <div class="proj-media"><img src="robo/img/hero.webp" alt="Tela do simulador do robô de WhatsApp com conversa" width="1376" height="768" loading="lazy"></div>
-        <div class="proj-body">
-          <span class="selo">Demo ao vivo</span>
-          <h3>Robô WhatsApp</h3>
-          <p><strong>Problema:</strong> Dúvidas frequentes sobre preços e disponibilidade a qualquer hora.</p>
-          <p><strong>O que fiz:</strong> Desenvolvi um robô que responde perguntas, calcula valores e registra pedidos de reserva.</p>
-          <ul class="chips">
-            <li>JavaScript</li>
-            <li>WhatsApp API</li>
-            <li>Node.js</li>
-            <li>Redis</li>
-          </ul>
-        </div>
-        <div class="proj-footer">
-          <a href="robo/">Testar o simulador →</a>
-        </div>
-      </article>
-
-      <!-- Juliane ERP -->
-      <article class="proj reveal" style="--i:2">
-        <div class="juliane-media">
-          <div class="browser-shot">
-            <div class="bar2" aria-hidden="true"><span></span><span></span><span></span></div>
-            <img src="img/projetos/juliane/juliane-login.webp" alt="Tela de login do Juliane ERP com painel de controle e indicadores" width="1600" height="690" loading="lazy">
-          </div>
-          <div class="browser-shot">
-            <div class="bar2" aria-hidden="true"><span></span><span></span><span></span></div>
-            <img src="img/projetos/juliane/juliane-inicio-desktop.webp" alt="Tela de início do Juliane ERP com painel de controle e indicadores" width="1600" height="690" loading="lazy">
-          </div>
-          <div class="device-shot">
-            <img src="img/projetos/juliane/juliane-inicio-mobile.webp" alt="Tela de início do Juliane ERP em celular com menu e cards" width="398" height="705" loading="lazy">
-          </div>
-          <figcaption>Valores ocultados para preservar os dados da loja.</figcaption>
-        </div>
-        <div class="proj-body">
-          <span class="selo">Sistema em uso</span>
-          <h3>Juliane ERP</h3>
-          <p><strong>Problema:</strong> Controle manual de vendas e estoque causam erros e perda de tempo.</p>
-          <p><strong>O que fiz:</strong> Sistema de gestão com painel de vendas, relatórios e controle de estoque.</p>
-          <ul class="chips">
             <li>Python</li>
-            <li>Django</li>
-            <li>PostgreSQL</li>
-            <li>Redis</li>
+            <li>Gemini (imagens)</li>
+            <li>GitHub Pages</li>
           </ul>
-        </div>
-        <div class="proj-footer">
-          <span class="note">Sistema de cliente: sem link público.</span>
+          <div class="project-actions">
+            <a href="#pousadas" aria-label="Ver as demos das pousadas">Ver as demos <span aria-hidden="true">→</span></a>
+            <a href="https://github.com/kelvinblackk/pousadas" target="_blank" rel="noopener"><span class="sr-only">Projeto Pousadas no </span>GitHub <span aria-hidden="true">↗</span><span class="sr-only"> (abre em nova aba)</span></a>
+          </div>
+          <p class="project-note">Pousadas fictícias, fotos ilustrativas geradas por IA.</p>
         </div>
       </article>
-
-      <!-- ClipForge -->
-      <article class="proj reveal" style="--i:3">
+      <article class="proj reveal" aria-labelledby="proj-robo" style="--i:1">
         <div class="proj-media">
-          <picture>
-            <source srcset="img/projetos/clipforge-800.webp 800w, img/projetos/clipforge.webp 1600w" type="image/webp">
-            <img src="img/projetos/clipforge.webp" alt="Tela do ClipForge com editor de vídeo e timeline" width="1600" height="1000" loading="lazy">
-          </picture>
+          <img src="robo/img/hero.webp" srcset="robo/img/hero-640.webp 640w, robo/img/hero.webp 1200w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="Simulador do robô com uma conversa sobre uma reserva" width="1200" height="750" loading="lazy">
         </div>
         <div class="proj-body">
-          <span class="selo">Código privado</span>
-          <h3>ClipForge</h3>
-          <p><strong>Problema:</strong> Edição manual de vídeos era demorada e repetitiva.</p>
-          <p><strong>O que fiz:</strong> Ferramenta de corte e composição automática de clipes com IA.</p>
-          <ul class="chips">
+          <span class="badge">Demo ao vivo</span>
+          <h3 id="proj-robo">Robô de atendimento no WhatsApp</h3>
+          <p><span class="lbl">Problema</span>o dono da pousada perde reserva quando demora para responder.</p>
+          <p class="what"><span class="lbl">O que fiz</span>um robô que responde no WhatsApp, tira dúvidas e encaminha a reserva, com um simulador para testar a conversa no navegador.</p>
+          <ul class="chips" aria-label="Tecnologias">
             <li>Python</li>
-            <li>FFmpeg</li>
-            <li>Anthropic</li>
             <li>FastAPI</li>
+            <li>WhatsApp Cloud API</li>
           </ul>
-        </div>
-        <div class="proj-footer">
-          <span class="note">Código privado.</span>
+          <div class="project-actions">
+            <a href="robo/" aria-label="Testar o simulador do robô">Testar o simulador <span aria-hidden="true">→</span></a>
+          </div>
         </div>
       </article>
-
-      <!-- Video Factory -->
-      <article class="proj reveal" style="--i:4">
+      <article class="proj reveal" aria-labelledby="proj-clipforge" style="--i:0">
         <div class="proj-media">
-          <picture>
-            <source srcset="img/projetos/video-factory-800.webp 800w, img/projetos/video-factory.webp 1600w" type="image/webp">
-            <img src="img/projetos/video-factory.webp" alt="Tela do Video Factory com fila de vídeos e template" width="1600" height="1000" loading="lazy">
-          </picture>
+          <img src="img/projetos/clipforge.webp" srcset="img/projetos/clipforge-800.webp 800w, img/projetos/clipforge.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="" width="1600" height="1000" loading="lazy">
         </div>
         <div class="proj-body">
-          <span class="selo">Código privado</span>
-          <h3>Video Factory</h3>
-          <p><strong>Problema:</strong> Produção de vídeos para redes sociais exigia muito tempo.</p>
-          <p><strong>O que fiz:</strong> Plataforma que gera vídeos automaticamente a partir de texto e templates.</p>
-          <ul class="chips">
+          <span class="badge private">Código privado</span>
+          <h3 id="proj-clipforge">ClipForge AI</h3>
+          <p><span class="lbl">Problema</span>cortar vídeos longos em clips curtos toma horas de edição.</p>
+          <p class="what"><span class="lbl">O que fiz</span>uma estação local que recebe o vídeo, transcreve, usa IA para achar os melhores trechos e exporta os clips prontos para revisar e baixar. Tudo roda no computador, sem pagar API.</p>
+          <ul class="chips" aria-label="Tecnologias">
             <li>Python</li>
-            <li>React</li>
-            <li>Node.js</li>
-            <li>Anthropic</li>
+            <li>Faster Whisper</li>
+            <li>Ollama (IA local)</li>
+            <li>FFmpeg</li>
           </ul>
         </div>
-        <div class="proj-footer">
-          <span class="note">Código privado.</span>
-        </div>
       </article>
-
-      <!-- Kell Agente -->
-      <article class="proj reveal" style="--i:5">
+      <article class="proj reveal" aria-labelledby="proj-video-factory" style="--i:1">
         <div class="proj-media">
-          <picture>
-            <source srcset="img/projetos/kell-agente-800.webp 800w, img/projetos/kell-agente.webp 1600w" type="image/webp">
-            <img src="img/projetos/kell-agente.webp" alt="Tela do Kell Agente com dashboard de atendimento e métricas" width="1600" height="1000" loading="lazy">
-          </picture>
+          <img src="img/projetos/video-factory.webp" srcset="img/projetos/video-factory-800.webp 800w, img/projetos/video-factory.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="" width="1600" height="1000" loading="lazy">
         </div>
         <div class="proj-body">
-          <span class="selo">Em desenvolvimento</span>
-          <h3>Kell Agente</h3>
-          <p><strong>Problema:</strong> Atendimento ao cliente precisa de respostas rápidas e personalizadas.</p>
-          <p><strong>O que fiz:</strong> Assistente virtual com IA para WhatsApp e chat do site.</p>
-          <ul class="chips">
-            <li>Node.js</li>
-            <li>WhatsApp API</li>
-            <li>Anthropic</li>
-            <li>React</li>
-          </ul>
-        </div>
-        <div class="proj-footer">
-          <span class="note">Em desenvolvimento · código privado.</span>
-        </div>
-      </article>
-
-      <!-- Assistente pessoal com IA -->
-      <article class="proj reveal" style="--i:6">
-        <div class="proj-media">
-          <picture>
-            <source srcset="img/projetos/assistente-800.webp 800w, img/projetos/assistente.webp 1600w" type="image/webp">
-            <img src="img/projetos/assistente.webp" alt="Tela do assistente pessoal com chat de lembretes e tarefas" width="1600" height="1000" loading="lazy">
-          </picture>
-        </div>
-        <div class="proj-body">
-          <span class="selo">Projeto pessoal</span>
-          <h3>Assistente pessoal com IA</h3>
-          <p><strong>Problema:</strong> Organizar tarefas e lembretes de forma eficiente.</p>
-          <p><strong>O que fiz:</strong> Assistente que entende linguagem natural e cria lembretes automáticos.</p>
-          <ul class="chips">
+          <span class="badge private">Código privado</span>
+          <h3 id="proj-video-factory">AI Video Factory</h3>
+          <p><span class="lbl">Problema</span>produzir vídeos longos de ranking e comparação leva dias.</p>
+          <p class="what"><span class="lbl">O que fiz</span>um pipeline que vai do tema ao MP4: gera o roteiro, busca imagens, narra em português com voz neural e monta o vídeo.</p>
+          <ul class="chips" aria-label="Tecnologias">
             <li>Python</li>
-            <li>React Native</li>
-            <li>Anthropic</li>
-            <li>Supabase</li>
+            <li>Google Cloud TTS</li>
+            <li>Pexels API</li>
+            <li>FFmpeg</li>
           </ul>
         </div>
-        <div class="proj-footer">
-          <span class="note">Projeto pessoal · código privado.</span>
+      </article>
+      <article class="proj reveal" aria-labelledby="proj-kell-agente" style="--i:0">
+        <div class="proj-media">
+          <img src="img/projetos/kell-agente.webp" srcset="img/projetos/kell-agente-800.webp 800w, img/projetos/kell-agente.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="" width="1600" height="1000" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <span class="badge progress">Em desenvolvimento</span>
+          <h3 id="proj-kell-agente">Kell Agente</h3>
+          <p><span class="lbl">Problema</span>usar IA em projetos de software sem mandar o código para fora.</p>
+          <p class="what"><span class="lbl">O que fiz</span>a base de um agente de engenharia de software que roda com IA local: lê o projeto com segurança, monta o contexto e conversa pelo terminal ou pela web.</p>
+          <ul class="chips" aria-label="Tecnologias">
+            <li>Python</li>
+            <li>LLMs locais (Ollama, LM Studio)</li>
+            <li>API compatível com OpenAI</li>
+          </ul>
+          <p class="private-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3m-4 5v2"/></svg> Em desenvolvimento · código privado</p>
+        </div>
+      </article>
+      <article class="proj reveal" aria-labelledby="proj-assistente" style="--i:1">
+        <div class="proj-media">
+          <img src="img/projetos/assistente.webp" srcset="img/projetos/assistente-800.webp 800w, img/projetos/assistente.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1140px) calc((100vw - 62px) / 2), 538px" alt="" width="1600" height="1000" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <span class="badge private">Projeto pessoal</span>
+          <h3 id="proj-assistente">Assistente pessoal com IA (Android)</h3>
+          <p><span class="lbl">Problema</span>lembretes e tarefas espalhados em vários apps e anotações.</p>
+          <p class="what"><span class="lbl">O que fiz</span>um agente de IA no celular que funciona como uma secretária: anoto tudo o que preciso lembrar ou fazer, e ele organiza e me lembra.</p>
+          <ul class="chips" aria-label="Tecnologias">
+            <li>Kotlin</li>
+            <li>Android</li>
+            <li>IA generativa</li>
+          </ul>
+          <p class="private-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3m-4 5v2"/></svg> Código privado</p>
         </div>
       </article>
     </div>
@@ -605,45 +662,57 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 <section id="servicos">
   <div class="wrap">
     <div class="sec-head"><span class="eyebrow">Serviços</span><h2 class="fill">Como posso ajudar</h2></div>
-    <div class="plans">
-      <article class="plan reveal" style="--i:0">
-        <span class="tier">Sites e landing pages</span>
-        <h3>Sites e landing pages</h3>
-        <p>Sites rápidos, responsivos e com bom ranqueamento no Google para pequenos negócios e pousadas.</p>
-        <ul class="checks"><li>Design profissional</li><li>Otimização para buscas</li><li>Integração com WhatsApp</li></ul>
+    <div class="services">
+      <article class="service reveal" aria-labelledby="servico-1" style="--i:1">
+        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01m3 0h.01"/></svg></span>
+        <h3 id="servico-1">Sites e landing pages</h3>
       </article>
-      <article class="plan top reveal" style="--i:1">
-        <span class="ribbon">Mais completo</span>
-        <span class="tier">Sistemas sob medida</span>
-        <h3>Sistemas sob medida</h3>
-        <p>Soluções personalizadas para automação de processos e gestão de negócios.</p>
-        <ul class="checks"><li>Desenvolvimento personalizado</li><li>Integração com APIs</li><li>Painéis de controle</li></ul>
+      <article class="service reveal" aria-labelledby="servico-2" style="--i:2">
+        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v15a1 1 0 0 0 1 1h15M8 16v-3m5 3V9m5 7V5"/></svg></span>
+        <h3 id="servico-2">Sistemas sob medida (estoque, vendas, gestão)</h3>
       </article>
-      <article class="plan reveal" style="--i:2">
-        <span class="tier">Robôs de WhatsApp</span>
-        <h3>Robôs de WhatsApp</h3>
-        <p>Atendimento automático 24h com a API oficial da Meta, sem risco de bloqueio do número.</p>
-        <ul class="checks"><li>Respostas rápidas</li><li>Registro de pedidos</li><li>Integração com painel</li></ul>
+      <article class="service reveal" aria-labelledby="servico-3" style="--i:3">
+        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4H5a2 2 0 0 0-2 2v14l4-4h10a2 2 0 0 0 2-2v-3m-2-8v6m-3-3h6"/></svg></span>
+        <h3 id="servico-3">Robôs de WhatsApp e automações com IA</h3>
       </article>
-      <article class="plan reveal" style="--i:3">
-        <span class="tier">Infraestrutura</span>
-        <h3>Infraestrutura</h3>
-        <p>Redes, câmeras e elétrica para empresas e residências em Boa Vista e região.</p>
-        <ul class="checks"><li>Projeto e instalação</li><li>Manutenção preventiva</li><li>Suporte técnico</li></ul>
+      <article class="service reveal" aria-labelledby="servico-4" style="--i:4">
+        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l14-4 3 9-14 4zM10 16l2 4h9m-1-10 2-1 1 4-3 1"/></svg></span>
+        <h3 id="servico-4">Infraestrutura: redes, câmeras e elétrica</h3>
       </article>
     </div>
-    <div class="cta-reveal">
-      <div class="wrap" style="background:var(--soft);border-radius:20px;padding:20px 24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <span>Tem uma pousada? Veja o que eu monto para hospedagem.</span>
-        <a class="btn btn-sun" href="#pousadas">Ver soluções para pousadas →</a>
-      </div>
+    <div class="bridge reveal">
+      <span>Tem uma pousada? Veja o que eu monto para hospedagem.</span>
+      <a class="btn btn-sun" href="#pousadas">Ver soluções para pousadas <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
 
-<section id="pousadas">
+<div id="pousadas">
+<section class="pousadas-intro">
   <div class="wrap">
     <div class="sec-head"><span class="eyebrow">Para pousadas</span><h2 class="fill">Sites e atendimento para pousadas</h2><p class="reveal">Faço o site, o atendimento automático no WhatsApp e o painel de gestão para pousadas pequenas venderem mais e responderem hóspedes na hora.</p></div>
+  </div>
+  <div class="marquee" aria-label="Fotos dos sites de exemplo">
+    <div class="track">
+      <figure><img src="img/mar/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Maré Mansa</figcaption></figure>
+      <figure><img src="img/serra/quarto-1.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Cantinho da Serra</figcaption></figure>
+      <figure><img src="img/chapada/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Vale das Águas</figcaption></figure>
+      <figure><img src="img/colonial/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Casarão Colonial</figcaption></figure>
+      <figure><img src="img/fazenda/quarto-casal.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Sítio dos Ipês</figcaption></figure>
+      <figure><img src="img/mata/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Recanto da Mata</figcaption></figure>
+      <figure><img src="img/demo/quarto-varanda.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Remanso do Rio</figcaption></figure>
+      <figure><img src="img/mar/galeria-2.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Maré Mansa</figcaption></figure>
+    </div>
+    <div class="track" data-dir="-1">
+      <figure><img src="img/fazenda/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Sítio dos Ipês</figcaption></figure>
+      <figure><img src="img/colonial/galeria-1.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Casarão Colonial</figcaption></figure>
+      <figure><img src="img/chapada/quarto-varanda.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Vale das Águas</figcaption></figure>
+      <figure><img src="img/mata/galeria-2.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Recanto da Mata</figcaption></figure>
+      <figure><img src="img/serra/galeria-1.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Cantinho da Serra</figcaption></figure>
+      <figure><img src="img/demo/hero.webp" alt="" width="1376" height="768" loading="lazy"><figcaption>Remanso do Rio</figcaption></figure>
+      <figure><img src="img/mar/quarto-3.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Maré Mansa</figcaption></figure>
+      <figure><img src="img/fazenda/quarto-varanda.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Sítio dos Ipês</figcaption></figure>
+    </div>
   </div>
 </section>
 
@@ -764,26 +833,29 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
   </div>
 </section>
 
+</div>
+
 <section id="contato" style="padding-top:0">
   <div class="wrap">
     <div class="contact reveal">
       <div class="txt">
         <span class="eyebrow">Contato</span>
-        <h2>Vamos conversar sobre o seu projeto?</h2>
-        <p>Sou Kelvin Jordan, empreendedor e técnico em TI em Boa Vista (RR). Crio sites, sistemas, robôs de WhatsApp e automações com IA. Vamos conversar sobre o seu projeto?</p>
-        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
-          <a class="btn btn-sun" href="https://wa.me/5595981020209"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3Z"/></svg>Chamar no WhatsApp</a>
-          <a class="num" href="mailto:kelvin@kjnegocios.com">kelvin@kjnegocios.com</a>
-          <span class="num">Boa Vista (RR)</span>
-          <span class="num">(95) 98102-0209</span>
-        </div>
+        <h2>Vamos conversar?</h2>
+        <p>Tem um projeto, um problema ou só uma ideia? Me chama e a gente vê juntos como resolver.</p>
+        <ul class="contact-channels">
+          <li><a href="https://wa.me/5595981020209" class="whats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.6-4.6A9 9 0 1 1 21 11.5Z"/><path d="M8 8c0 4 4 8 8 8"/></svg><span><small>WhatsApp</small>(95) 98102-0209</span></a></li>
+          <li><a href="mailto:kelvin_g10@outlook.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg><span><small>E-mail</small>kelvin_g10@outlook.com</span></a></li>
+          <li><a href="https://linkedin.com/in/kelvinjordantec" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5m0-8h.01m4 8v-5m0 2a2 2 0 0 1 4 0v3"/></svg><span><small>LinkedIn</small>/in/kelvinjordantec<span class="sr-only"> (abre em nova aba)</span></span></a></li>
+          <li><a href="https://github.com/kelvinblackk" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 19c-4 1-4-2-6-2m12 4v-3a3 3 0 0 0-1-2c4 0 7-2 7-6a5 5 0 0 0-1-3 5 5 0 0 0 0-4s-2 0-4 2a15 15 0 0 0-6 0C7 3 5 3 5 3a5 5 0 0 0 0 4 5 5 0 0 0-1 3c0 4 3 6 7 6a3 3 0 0 0-1 2v3"/></svg><span><small>GitHub</small>/kelvinblackk<span class="sr-only"> (abre em nova aba)</span></span></a></li>
+        </ul>
       </div>
+      <img class="portrait" src="img/kelvin/kelvin-800.webp" srcset="img/kelvin/kelvin-480.webp 480w, img/kelvin/kelvin-800.webp 800w" sizes="(max-width: 1140px) 42vw, 460px" alt="" width="800" height="1000" loading="lazy">
     </div>
   </div>
 </section>
 </main>
 
-<footer><div class="wrap"><span>Kelvin Jordan · Desenvolvimento web e automação com IA</span><span>Pousadas dos exemplos são fictícias, com fotos ilustrativas geradas por IA.</span></div></footer>
+<footer><div class="wrap"><span>Kelvin Jordan Oliveira Silva · Boa Vista (RR) · Desenvolvimento web e automação com IA</span><span>Pousadas dos exemplos são fictícias, com fotos ilustrativas geradas por IA.</span></div></footer>
 
 <script>
 const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -811,16 +883,54 @@ const fills = $$(".fill").map(el => ({ el, words: split(el) }));
 
 // menu
 const nav = $("#nav"), menuBtn = $("#menuBtn");
-menuBtn.onclick = () => { const o = nav.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", o); document.body.style.overflow = o ? "hidden" : ""; };
-$$("#links a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false); document.body.style.overflow = ""; }));
 const secs = $$("#links a").map(a => [a, $(a.getAttribute("href"))]);
+function setMenu(open) {
+  nav.classList.toggle("open", open);
+  menuBtn.setAttribute("aria-expanded", open);
+  menuBtn.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+  document.body.style.overflow = open ? "hidden" : "";
+  if (open) secs[0][0].focus();
+}
+menuBtn.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+secs.forEach(([a]) => a.addEventListener("click", () => setMenu(false)));
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && nav.classList.contains("open")) {
+    setMenu(false);
+    menuBtn.focus();
+  }
+});
+matchMedia("(max-width: 1000px)").addEventListener("change", () => setMenu(false));
+
+const julianeShots = $(".juliane-shots");
+const hasCarousel = matchMedia("(max-width: 560px)");
+const updateCarouselFocus = () => julianeShots.tabIndex = hasCarousel.matches ? 0 : -1;
+updateCarouselFocus();
+hasCarousel.addEventListener("change", updateCarouselFocus);
 
 // entrada ao rolar
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .15 });
 $$(".reveal").forEach(el => io.observe(el));
 
+if (!calm) {
+  const stats = $(".stats");
+  const counters = $$("[data-count]");
+  const counterObserver = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    counterObserver.disconnect();
+    const start = performance.now();
+    function count(now) {
+      const progress = Math.min(1, (now - start) / 1200);
+      const eased = 1 - (1 - progress) ** 3;
+      counters.forEach(el => el.textContent = Math.round(eased * Number(el.dataset.count)) + "+");
+      if (progress < 1) requestAnimationFrame(count);
+    }
+    requestAnimationFrame(count);
+  }, { threshold: .25 });
+  counterObserver.observe(stats);
+}
+
 // efeitos ligados à rolagem
-const collage = $$("#collage img"), proc = $("#process");
+const heroPortrait = $(".hero-portrait"), wideHero = matchMedia("(min-width: 901px)"), proc = $("#process");
 function onScroll() {
   const vh = innerHeight, y = scrollY;
   nav.classList.toggle("small", y > 40);
@@ -830,14 +940,15 @@ function onScroll() {
     const r = el.getBoundingClientRect();
     const p = Math.min(1, Math.max(0, (vh * .9 - r.top) / (vh * .45)));
     const n = Math.round(p * words.length);
-    words.forEach((w, i) => w.classList.toggle("lit", i < n));
+    words.slice(0, n).forEach(w => w.classList.add("lit"));
   });
-  collage.forEach(img => img.style.transform = `translateY(${y * img.dataset.speed}px)`);
+  heroPortrait.style.translate = wideHero.matches ? `0 ${-Math.min(y, 900) * .04}px` : "";
   const r = proc.getBoundingClientRect();
   proc.style.setProperty("--p", Math.min(1, Math.max(0, (vh * .85 - r.top) / (vh * .6))).toFixed(3));
 }
 let ticking = false;
 addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { onScroll(); ticking = false; }); } }, { passive: true });
+wideHero.addEventListener("change", onScroll);
 onScroll();
 
 // faixa de fotos: 2 fileiras em sentidos opostos, seguem a direção da rolagem e podem ser arrastadas
@@ -874,7 +985,11 @@ tabs.innerHTML = DEMOS.map((d, i) => `<button class="tab" role="tab" id="tab${i}
 const tabEls = $$(".tab");
 function show(i, user) {
   cur = i; const d = DEMOS[i];
-  tabEls.forEach((t, n) => { t.setAttribute("aria-selected", n === i); t.querySelector(".bar").classList.remove("run"); });
+  tabEls.forEach((t, n) => {
+    t.setAttribute("aria-selected", n === i);
+    t.tabIndex = n === i ? 0 : -1;
+    t.querySelector(".bar").classList.remove("run");
+  });
   $("#feature").setAttribute("aria-labelledby", "tab" + i);
   const img = $("#fImg"), info = $("#fInfo");
   img.classList.add("swap"); info.classList.add("swap");
@@ -888,7 +1003,14 @@ function show(i, user) {
   if (auto) { void tabEls[i].offsetWidth; tabEls[i].querySelector(".bar").classList.add("run"); timer = setTimeout(() => show((cur + 1) % DEMOS.length), 7000); }
 }
 tabEls.forEach((t, i) => t.addEventListener("click", () => show(i, true)));
-tabs.addEventListener("keydown", e => { const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (k) { const n = (cur + k + DEMOS.length) % DEMOS.length; show(n, true); tabEls[n].focus(); } });
+tabs.addEventListener("keydown", e => {
+  const direction = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+  if (!direction) return;
+  e.preventDefault();
+  const n = (tabEls.indexOf(e.target) + direction + DEMOS.length) % DEMOS.length;
+  show(n, true);
+  tabEls[n].focus();
+});
 show(0);
 
 // inclinação dos cards
