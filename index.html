@@ -373,6 +373,21 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
     :root[data-theme="dark"] .proj{--shine:rgb(255 255 255 / .06)}
   }
 }
+/* Transições entre páginas (View Transitions entre documentos) */
+.nav{view-transition-name:site-nav}
+#proj-pousadas{view-transition-name:pousadas-title}
+[aria-labelledby="proj-pousadas"] .proj-media img{view-transition-name:pousadas-hero}
+@media (prefers-reduced-motion: no-preference){
+  @supports (view-transition-name:none){
+    @view-transition{navigation:auto}
+    ::view-transition-group(*){animation-duration:.45s;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
+    ::view-transition-old(pousadas-hero),::view-transition-new(pousadas-hero){height:100%;object-fit:cover;overflow:clip}
+    ::view-transition-old(root){animation:.2s ease-out both vt-fade-out}
+    ::view-transition-new(root){animation:.35s cubic-bezier(.2,.7,.2,1) .05s both vt-rise}
+    @keyframes vt-fade-out{to{opacity:0}}
+    @keyframes vt-rise{from{opacity:0;translate:0 16px}}
+  }
+}
 </style>
 </head>
 <body>

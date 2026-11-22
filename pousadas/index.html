@@ -340,6 +340,22 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 @media (forced-colors:active){
   :focus-visible,.btn-sun:focus-visible{outline-color:Highlight;box-shadow:none}
 }
+/* Transições entre páginas (View Transitions entre documentos) */
+.nav{view-transition-name:site-nav}
+#heroTitle{view-transition-name:pousadas-title}
+.hero-shot{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;margin-top:40px;border-radius:28px;background:var(--soft);box-shadow:0 40px 80px -30px rgba(20,33,26,.55);view-transition-name:pousadas-hero}
+@media (max-width:560px){.hero-shot{aspect-ratio:4/3}}
+@media (prefers-reduced-motion: no-preference){
+  @supports (view-transition-name:none){
+    @view-transition{navigation:auto}
+    ::view-transition-group(*){animation-duration:.45s;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
+    ::view-transition-old(pousadas-hero),::view-transition-new(pousadas-hero){height:100%;object-fit:cover;overflow:clip}
+    ::view-transition-old(root){animation:.2s ease-out both vt-fade-out}
+    ::view-transition-new(root){animation:.35s cubic-bezier(.2,.7,.2,1) .05s both vt-rise}
+    @keyframes vt-fade-out{to{opacity:0}}
+    @keyframes vt-rise{from{opacity:0;translate:0 16px}}
+  }
+}
 </style>
 </head>
 <body>
@@ -364,6 +380,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
       <a class="btn btn-primary" href="#demos">Ver as demos</a>
       <a class="btn" href="../">← Voltar ao portfólio</a>
     </div>
+    <!-- no celular, o mesmo arquivo do card da home: já está no cache e não atrasa o LCP -->
+    <picture><source media="(max-width: 560px)" srcset="../img/projetos/pousadas-640.webp"><img class="hero-shot" src="img/demo/hero.webp" alt="Pousada à beira do rio com varanda e redes" width="1376" height="768" fetchpriority="high"></picture>
   </div>
 </section>
 
