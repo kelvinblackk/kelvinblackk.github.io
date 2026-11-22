@@ -13,17 +13,44 @@
 <link rel="canonical" href="https://kelvinblackk.github.io/">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <script>document.documentElement.classList.add("js")</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/fraunces-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url(/fonts/fraunces-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(/fonts/manrope-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{font-family:"Fraunces Fallback";src:local("Georgia");size-adjust:105.3%;ascent-override:92.9%;descent-override:24.2%;line-gap-override:0%}
+@font-face{font-family:"Fraunces Fallback";src:local("Georgia Italic"),local("Georgia");font-style:italic;size-adjust:105.3%;ascent-override:92.9%;descent-override:24.2%;line-gap-override:0%}
+@font-face{font-family:"Manrope Fallback";src:local("Arial");size-adjust:98.4%;ascent-override:108.4%;descent-override:30.5%;line-gap-override:0%}
 :root{
   --bg:#F5F1E8; --surface:#FFFDF8; --ink:#17201B; --muted:#5E665F; --line:#E4DDCF;
   --forest:#1F4D3A; --forest-ink:#F5F1E8; --sun:#D9822B; --sun-ink:#2A1606; --soft:#EBE4D5;
   --glow1:#F2C99A; --glow2:#BFD9C6; --dim:#827963;
   --dark:#14211A; --dark-2:#1C2D24; --dark-ink:#EEF1EC; --dark-muted:#A9B7AE;
-  --font-display:"Fraunces",Georgia,serif;
-  --font-body:"Manrope","Segoe UI",system-ui,sans-serif;
+  --font-display:"Fraunces","Fraunces Fallback",Georgia,serif;
+  --font-body:"Manrope","Manrope Fallback",Arial,sans-serif;
   --radius:20px;
   --sun-text:#A8561A;
   --forest-text:var(--forest);
