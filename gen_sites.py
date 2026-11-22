@@ -90,6 +90,7 @@ def build(s):
 <title>{s["title"]}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{BASE_URL}/{s['slug']}/">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta property="og:title" content="{s['title']}">
 <meta property="og:description" content="{description}">
 <meta property="og:image" content="{BASE_URL}/img/{s['slug']}/hero.webp">

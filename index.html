@@ -8,6 +8,7 @@
 <meta property="og:title" content="Kelvin Jordan · Do problema ao projeto funcionando">
 <meta property="og:description" content="Sites, sistemas e automações com IA. Veja meus projetos.">
 <meta property="og:image" content="https://kelvinblackk.github.io/pousadas/img/demo/hero.webp">
+<meta property="og:url" content="https://kelvinblackk.github.io/pousadas/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://kelvinblackk.github.io/pousadas/">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -197,6 +198,7 @@ section{padding:96px 0;position:relative}
   .phone .head{padding:6px 10px 10px}
   .steps{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -20px;padding:4px 20px 6px;scroll-padding:0 20px}
   .steps::-webkit-scrollbar{display:none}
+  .steps:focus{outline:3px solid var(--sun);outline-offset:-3px;border-radius:8px}
   .steps li{flex:0 0 82%;scroll-snap-align:start;grid-template-columns:40px 1fr;padding:18px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:var(--dark-2);opacity:.82;transition:opacity .3s,border-color .3s}
   .steps li:last-child{border-bottom:1px solid rgba(255,255,255,.1)}
   .steps li.cur{opacity:1;border-color:var(--sun)}
@@ -240,7 +242,7 @@ section{padding:96px 0;position:relative}
 @media (max-width:900px){.process{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.process{grid-template-columns:1fr}}
 .process div{display:grid;gap:8px;align-content:start}
-.process em{font:italic 600 2.6rem var(--font-display);color:var(--sun);line-height:1}
+.process em{font:italic 600 2.6rem var(--font-display);color:var(--sun-text);line-height:1}
 .process b{font-size:1.08rem}
 .process span{color:var(--muted);font-size:.95rem}
 
@@ -763,7 +765,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
     <div class="sec-head"><span class="eyebrow">Automação do WhatsApp</span><h2 class="fill">O hóspede pergunta, a pousada responde na hora</h2><p class="reveal">Robô feito com a API oficial da Meta, sem risco de bloqueio do número. Veja a conversa avançar passo a passo, ou teste você mesmo.</p></div>
     <div class="auto">
       <p class="swipe-hint">Deslize os passos para o lado →</p>
-      <ol class="steps" id="steps">
+      <ol class="steps" id="steps" role="list" aria-label="Passos do atendimento automático no WhatsApp" tabindex="0">
         <li data-step="1"><div><b>Resposta na hora, 24h</b><span>Preços, horários, pets, formas de pagamento e localização.</span></div></li>
         <li data-step="2"><div><b>Pedido de reserva</b><span>Pergunta datas e hóspedes, calcula o valor e registra o pedido no painel.</span></div></li>
         <li data-step="3"><div><b>Sinal via Pix</b><span>Envia a chave do sinal. Quando você marca "sinal recebido", a confirmação sai sozinha.</span></div></li>
@@ -1022,7 +1024,8 @@ if (!calm && matchMedia("(hover: hover)").matches) $$(".model").forEach(c => {
 
 // conversa do WhatsApp que avança
 const parts = $$("#chat [data-s]"), stepEls = $$("#steps li");
-const chat = $("#chat"), dots = $$("#sdots i"), mobile = matchMedia("(max-width: 960px)").matches;
+const chat = $("#chat"), dots = $$("#sdots i");
+const stepsBox = $("#steps"), mobileSteps = matchMedia("(max-width: 960px)");
 let step = 0;
 function upTo(n) {
   if (n === step) return; step = n;
@@ -1031,21 +1034,31 @@ function upTo(n) {
   dots.forEach((d, i) => d.classList.toggle("cur", i === n - 1));
   chat.scrollTo({ top: chat.scrollHeight, behavior: calm ? "auto" : "smooth" });
 }
-upTo(calm && !mobile ? 5 : 1);
-const stepsBox = $("#steps");
-if (mobile) {
-  // celular: o cartão encostado à esquerda do carrossel manda
-  stepsBox.addEventListener("scroll", () => {
-    const w = stepEls[1].offsetLeft - stepEls[0].offsetLeft;
-    const end = stepsBox.scrollLeft + stepsBox.clientWidth >= stepsBox.scrollWidth - 4;
-    upTo(end ? 5 : Math.min(5, 1 + Math.round(stepsBox.scrollLeft / w)));
-  }, { passive: true });
-} else if (!calm) {
-  // computador: o passo no meio da tela manda
-  const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) upTo(+e.target.dataset.step); }), { rootMargin: "-45% 0px -45% 0px" });
-  stepEls.forEach(s => so.observe(s));
+// celular: o cartão encostado à esquerda do carrossel manda
+function updateStepFromScroll() {
+  if (!mobileSteps.matches) return;
+  const w = stepEls[1].offsetLeft - stepEls[0].offsetLeft;
+  const end = stepsBox.scrollLeft + stepsBox.clientWidth >= stepsBox.scrollWidth - 4;
+  upTo(end ? 5 : Math.min(5, 1 + Math.round(stepsBox.scrollLeft / w)));
 }
-stepEls.forEach(s => s.addEventListener("click", () => mobile && s.scrollIntoView({ behavior: calm ? "auto" : "smooth", inline: "start", block: "nearest" })));
+// computador: o passo no meio da tela manda
+const stepObserver = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting && !mobileSteps.matches) upTo(+e.target.dataset.step); });
+}, { rootMargin: "-45% 0px -45% 0px" });
+function updateStepsLayout() {
+  stepsBox.tabIndex = mobileSteps.matches ? 0 : -1;
+  stepObserver.disconnect();
+  if (mobileSteps.matches) updateStepFromScroll();
+  else if (calm) upTo(5);
+  else {
+    upTo(1);
+    stepEls.forEach(s => stepObserver.observe(s));
+  }
+}
+updateStepsLayout();
+mobileSteps.addEventListener("change", updateStepsLayout);
+stepsBox.addEventListener("scroll", updateStepFromScroll, { passive: true });
+stepEls.forEach(s => s.addEventListener("click", () => mobileSteps.matches && s.scrollIntoView({ behavior: calm ? "auto" : "smooth", inline: "start", block: "nearest" })));
 </script>
 </body>
 </html>

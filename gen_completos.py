@@ -64,7 +64,10 @@ def troca(t, velho, novo, todas=False):
 
 
 def build(s):
-    t = MOLDE
+    # Os metadados da demo dão lugar aos da pousada gerada.
+    t, n = re.subn(r'^<meta name="description"[^\n]*>\n.*?^<meta name="twitter:card"[^\n]*>\n',
+                   "", MOLDE, count=1, flags=re.M | re.S)
+    assert n == 1, "Bloco de metadados da demo não encontrado"
     c, e = s["claro"], s["escuro"]
     q = {k: (n, p, b, m, sz, tags, alt) for k, n, p, b, m, sz, tags, alt in s["quartos"]}
     nc, nf, nv = q["casal"][0], q["familia"][0], q["varanda"][0]
@@ -76,8 +79,17 @@ def build(s):
     t = troca(t, "Pousada " + s["curto"] + ".", s["nome"] + ".")  # mensagem do WhatsApp
 
     description = s["nome"] + ". " + s["lead"]
-    t = troca(t, '<meta charset="utf-8">',
-              '<meta charset="utf-8">\n<meta name="description" content="' + description + '">\n<link rel="canonical" href="' + BASE_URL + '/' + s["slug"] + '/">\n<meta property="og:title" content="' + s["nome"] + '">\n<meta property="og:description" content="' + description + '">\n<meta property="og:image" content="' + BASE_URL + '/img/' + s["slug"] + '/hero.webp">\n<meta property="og:url" content="' + BASE_URL + '/' + s["slug"] + '/">\n<meta property="og:type" content="website">\n<meta name="twitter:card" content="summary_large_image">')
+    url = f"{BASE_URL}/{s['slug']}/"
+    t = troca(t, '<meta charset="utf-8">', f'''<meta charset="utf-8">
+<meta name="description" content="{description}">
+<link rel="canonical" href="{url}">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta property="og:title" content="{s['nome']}">
+<meta property="og:description" content="{description}">
+<meta property="og:image" content="{BASE_URL}/img/{s['slug']}/hero.webp">
+<meta property="og:url" content="{url}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">''')
 
     t = troca(t, "family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800", "family=" + s["fonte"][0])
     t = troca(t, '--font-display:"Bricolage Grotesque"', "--font-display:" + s["fonte"][1])
