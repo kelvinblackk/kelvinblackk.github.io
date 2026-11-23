@@ -42,6 +42,7 @@
   --line:#2E2B29;--line-strong:#6A625A;--glow:rgb(227 145 88 / .22);
   --shadow:none;--grain-opacity:.06;
   --hero-title-overlap:-22%;--hero-copy-top:-70px;--hero-small-height:46svh;
+  --cover-light:.92;
   --portrait-left-fade:linear-gradient(90deg,var(--photo-bg) 12%,transparent 45%);
   color-scheme:dark;
 }}
@@ -51,6 +52,7 @@
   --line:#2E2B29;--line-strong:#6A625A;--glow:rgb(227 145 88 / .22);
   --shadow:none;--grain-opacity:.06;
   --hero-title-overlap:-22%;--hero-copy-top:-70px;--hero-small-height:46svh;
+  --cover-light:.92;
   --portrait-left-fade:linear-gradient(90deg,var(--photo-bg) 12%,transparent 45%);
   color-scheme:dark;
 }
@@ -181,40 +183,50 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 
 .proj-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
 .proj{position:relative;grid-column:span 3;display:flex;flex-direction:column;min-width:0;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg)}
-.proj.featured{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
-.proj:focus-within{border-color:var(--navy)}
-.proj:is(:hover,:focus-within){box-shadow:0 26px 50px -26px rgba(20,33,26,.35)}
+.proj.featured{grid-column:1/-1}
+.proj:focus-within{border-color:var(--accent)}
+.proj:is(:hover,:focus-within){box-shadow:var(--shadow)}
+.proj-bar{grid-column:1/-1;min-width:0;height:36px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-inline:14px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.proj.compact .proj-bar{height:30px}
+.proj-dots{flex:none;display:flex;gap:5px}
+.proj-dots i{width:9px;height:9px;border-radius:50%;background:var(--line-strong)}
+.proj:is(:hover,:focus-within) .proj-dots i:first-child{background:var(--accent)}
+.proj-bar-stack{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--muted);font:400 .72rem/1.4 var(--font-mono)}
 .proj-media{aspect-ratio:16/10;overflow:hidden;background:var(--surface-2)}
-.proj-media img{width:100%;height:100%;object-fit:cover}
-.proj-body{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1;min-width:0}
-.featured .proj-body{padding:40px;justify-content:center}
-.proj h3{font-size:1.3rem}
-.proj.featured h3{font-size:1.7rem}
+.proj-media img{width:100%;height:100%;object-fit:cover;filter:brightness(var(--cover-light,1))}
+.proj-body{padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3);flex:1;min-width:0}
+.proj h3{font-size:clamp(1.3rem,2vw,1.6rem);line-height:1.1;letter-spacing:-.02em}
+.proj.featured h3{font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.05;letter-spacing:-.025em}
 .proj p{font-size:.95rem}
 .proj .what{color:var(--muted)}
-.lbl{display:block;margin-bottom:3px;color:var(--muted);font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.lbl{display:block;margin-bottom:3px;color:var(--muted);font:400 .72rem/1.4 var(--font-mono)}
 .proj .chips{gap:6px}
-.proj .chips li{padding:4px 10px;font-size:.78rem}
-.badge{align-self:flex-start;padding:4px 10px;border-radius:999px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--navy)}
-.badge.private{background:var(--surface-2);color:var(--muted)}
-.badge.progress{background:var(--surface-2);color:var(--accent-text)}
-.project-actions{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:auto;padding-top:6px;border-top:1px solid var(--line)}
-.project-actions a{display:inline-flex;gap:4px;align-items:center;min-height:44px;font-size:.9rem;font-weight:700;text-decoration:none}
+.proj .chips li{font-size:.74rem}
+.badge{align-self:flex-start;color:var(--accent-text);font:400 .78rem/1.4 var(--font-mono);text-transform:lowercase}
+.badge::before{content:"// " / ""}
+.project-actions{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:auto}
+.project-actions a{display:inline-flex;gap:4px;align-items:center;min-height:44px;font-size:.95rem;font-weight:600;text-decoration:none}
+.project-actions a [aria-hidden]{color:var(--accent)}
 .project-actions a:is(:hover,:focus-visible){text-decoration:underline;text-underline-offset:4px}
-
-.proj .project-note,.proj .private-note{color:var(--muted);font-size:.85rem}
-.private-note{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
+.proj .project-note{color:var(--muted);font-size:.85rem}
+.proj .private-note{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:var(--s2);color:var(--muted);font:400 .78rem/1.4 var(--font-mono)}
 .private-note svg{width:16px;height:16px;flex:none}
 
-.juliane-media{display:grid;align-content:center;gap:12px;margin:0;padding:28px;background:var(--surface-2);min-width:0}
-.juliane-shots{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:16px;align-items:center;max-width:540px;width:100%;margin-inline:auto}
-.browser-shot{overflow:hidden;border-radius:12px;background:#fff;box-shadow:0 24px 60px -20px rgba(20,33,26,.5)}
-.browser-shot .bar2{display:flex;gap:5px;padding:6px 8px;background:#ECE7DC}
-.browser-shot .bar2 span{width:7px;height:7px;border-radius:50%;background:#D3CCBD}
-.browser-shot img,.device-shot img{width:100%}
-.device-shot{grid-area:1/2/span 2;background:#0B141A;border:6px solid #0B141A;border-radius:18px;overflow:hidden;box-shadow:0 24px 60px -20px rgba(20,33,26,.5)}
+.juliane-media{display:grid;align-content:center;gap:var(--s5);margin:0;padding:var(--s6);min-width:0;overflow:hidden;background:radial-gradient(ellipse at top right,var(--glow),transparent 65%),var(--surface-2)}
+.juliane-shots{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:12px;align-items:center;max-width:540px;width:100%;margin-inline:auto}
+.browser-shot,.device-shot{border-radius:14px;overflow:hidden;box-shadow:0 24px 60px -20px rgb(26 23 20 / .5)}
+.browser-shot{background:#fff}
+.browser-shot .bar2{display:flex;gap:5px;padding:6px 8px;background:var(--surface-2)}
+.browser-shot .bar2 span{width:7px;height:7px;border-radius:50%;background:var(--line-strong)}
+.browser-shot img,.device-shot img{width:100%;filter:brightness(var(--cover-light,1))}
+.device-shot{grid-area:1/2/span 2;z-index:1;background:#0B141A;border:6px solid #0B141A}
 .juliane-media figcaption,.juliane-media .mobile-hint{text-align:center;color:var(--muted);font-size:.78rem}
 .mobile-hint{display:none}
+@media (min-width:561px){
+  .juliane-shots .device-shot{rotate:3deg;translate:-10px 0}
+  .juliane-shots .browser-shot:nth-child(2){rotate:-3deg;translate:12px 0}
+  .juliane-shots .browser-shot:nth-child(3){translate:12px -6px}
+}
 
 .services{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 .service{padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg)}
@@ -237,7 +249,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 @media(max-width:1000px){
   .proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .proj{grid-column:span 1}
-  .proj.featured{grid-template-columns:1fr}
   .services{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:860px){.contact .portrait{display:none}}
@@ -248,6 +259,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 }
 @media(max-width:560px){
   .proj-grid,.services{grid-template-columns:1fr}
+  .proj-bar-extra,.proj-bar-prefix{display:none}
   .proj-body,.featured .proj-body{padding:18px}
   .juliane-media{padding:12px 0 18px}
   .juliane-shots{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding:12px 18px 18px;scroll-padding-inline:18px;overscroll-behavior-inline:contain}
@@ -312,15 +324,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 
 /* Grade de projetos */
 @media (min-width:561px){
-  .proj.compact{display:grid;grid-template-columns:clamp(64px,12vw,120px) minmax(0,1fr);align-items:start}
+  .proj.compact{display:grid;grid-template-columns:clamp(64px,12vw,120px) minmax(0,1fr);grid-template-rows:auto 1fr;align-items:start}
   .proj.compact .proj-media{aspect-ratio:1}
   .proj.compact .proj-body{height:100%;padding:16px;overflow-wrap:anywhere}
-  .proj.compact .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
-  .proj.compact .chips li{flex:none}
 }
 @media (min-width:1001px){
-  .proj-grid{grid-auto-rows:auto}
-  .proj:not(.featured,.compact){--bento-index:0}
+  .proj.featured{grid-column:span 4;grid-row:span 2}
+  .proj.featured .juliane-media{flex:1}
+  .proj.featured .proj-body{flex:none}
+  .proj:not(.featured,.compact){grid-column:span 2;--bento-index:0}
+  .proj:not(.featured,.compact) .proj-media{aspect-ratio:2}
 }
 
 /* Efeitos exclusivos de ponteiros finos */
@@ -493,6 +506,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
     <div class="sec-head"><span class="eyebrow">Projetos</span><h2>Projetos</h2><p class="reveal">Alguns trabalhos, do site ao sistema completo. Cada um resolve um problema real.</p></div>
     <div class="proj-grid">
       <article class="proj featured reveal" aria-labelledby="proj-juliane" style="--i:0">
+        <div class="proj-bar" aria-hidden="true"><span class="proj-dots"><i></i><i></i><i></i></span><span class="proj-bar-stack"><span class="proj-bar-prefix">juliane-erp · </span>next.js · supabase</span></div>
         <figure class="juliane-media">
           <div class="juliane-shots" role="region" aria-label="Telas do Juliane ERP" tabindex="0">
             <div class="device-shot">
@@ -527,8 +541,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
         </div>
       </article>
       <article class="proj reveal" aria-labelledby="proj-pousadas" style="--i:0">
+        <div class="proj-bar" aria-hidden="true"><span class="proj-dots"><i></i><i></i><i></i></span><span class="proj-bar-stack">html · css<span class="proj-bar-extra"> · javascript · python · gemini (imagens) · github pages</span></span></div>
         <div class="proj-media">
-          <img src="pousadas/img/demo/hero.webp" srcset="img/projetos/pousadas-640.webp 640w, pousadas/img/demo/hero.webp 1376w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) calc((100vw - 62px) / 2), (max-width: 1140px) calc((100vw - 84px) / 3), 352px" alt="Pousada à beira do rio com varanda e redes" width="1376" height="768" loading="lazy">
+          <img src="pousadas/img/demo/hero.webp" srcset="img/projetos/pousadas-640.webp 640w, pousadas/img/demo/hero.webp 1376w" sizes="(max-width: 560px) 90vw, (max-width: 1000px) 45vw, 29vw" alt="Pousada à beira do rio com varanda e redes" width="1376" height="768" loading="lazy">
         </div>
         <div class="proj-body">
           <span class="badge">Demo ao vivo</span>
@@ -551,8 +566,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
         </div>
       </article>
       <article class="proj reveal" aria-labelledby="proj-robo" style="--i:var(--bento-index,1)">
+        <div class="proj-bar" aria-hidden="true"><span class="proj-dots"><i></i><i></i><i></i></span><span class="proj-bar-stack">python · fastapi<span class="proj-bar-extra"> · whatsapp cloud api</span></span></div>
         <div class="proj-media">
-          <img src="pousadas/robo/img/hero.webp" srcset="pousadas/robo/img/hero-640.webp 640w, pousadas/robo/img/hero.webp 1200w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) calc((100vw - 62px) / 2), (max-width: 1140px) calc((100vw - 84px) / 3), 352px" alt="Simulador do robô com uma conversa sobre uma reserva" width="1200" height="750" loading="lazy">
+          <img src="pousadas/robo/img/hero.webp" srcset="pousadas/robo/img/hero-640.webp 640w, pousadas/robo/img/hero.webp 1200w" sizes="(max-width: 560px) 90vw, (max-width: 1000px) 45vw, 29vw" alt="Simulador do robô com uma conversa sobre uma reserva" width="1200" height="750" loading="lazy">
         </div>
         <div class="proj-body">
           <span class="badge">Demo ao vivo</span>
@@ -570,6 +586,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
         </div>
       </article>
       <article class="proj compact reveal" aria-labelledby="proj-clipforge" style="--i:0">
+        <div class="proj-bar" aria-hidden="true"><span class="proj-dots"><i></i><i></i><i></i></span><span class="proj-bar-stack">python · faster whisper<span class="proj-bar-extra"> · ollama (ia local) · ffmpeg</span></span></div>
         <div class="proj-media">
           <img src="img/projetos/clipforge.webp" srcset="img/projetos/clipforge-800.webp 800w, img/projetos/clipforge.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) 12vw, 120px" alt="" width="1600" height="1000" loading="lazy">
         </div>
@@ -578,7 +595,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
           <h3 id="proj-clipforge">ClipForge AI</h3>
           <p><span class="lbl">Problema</span>cortar vídeos longos em clips curtos toma horas de edição.</p>
           <p class="what"><span class="lbl">O que fiz</span>uma estação local que recebe o vídeo, transcreve, usa IA para achar os melhores trechos e exporta os clips prontos para revisar e baixar. Tudo roda no computador, sem pagar API.</p>
-          <ul tabindex="0" class="chips" aria-label="Tecnologias">
+          <ul class="chips" aria-label="Tecnologias">
             <li>Python</li>
             <li>Faster Whisper</li>
             <li>Ollama (IA local)</li>
@@ -587,6 +604,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
         </div>
       </article>
       <article class="proj compact reveal" aria-labelledby="proj-video-factory" style="--i:1">
+        <div class="proj-bar" aria-hidden="true"><span class="proj-dots"><i></i><i></i><i></i></span><span class="proj-bar-stack">python · google cloud tts<span class="proj-bar-extra"> · pexels api · ffmpeg</span></span></div>
         <div class="proj-media">
           <img src="img/projetos/video-factory.webp" srcset="img/projetos/video-factory-800.webp 800w, img/projetos/video-factory.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) 12vw, 120px" alt="" width="1600" height="1000" loading="lazy">
         </div>
@@ -595,7 +613,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
           <h3 id="proj-video-factory">AI Video Factory</h3>
           <p><span class="lbl">Problema</span>produzir vídeos longos de ranking e comparação leva dias.</p>
           <p class="what"><span class="lbl">O que fiz</span>um pipeline que vai do tema ao MP4: gera o roteiro, busca imagens, narra em português com voz neural e monta o vídeo.</p>
-          <ul tabindex="0" class="chips" aria-label="Tecnologias">
+          <ul class="chips" aria-label="Tecnologias">
             <li>Python</li>
             <li>Google Cloud TTS</li>
             <li>Pexels API</li>
@@ -604,6 +622,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
         </div>
       </article>
       <article class="proj compact reveal" aria-labelledby="proj-kell-agente" style="--i:0">
+        <div class="proj-bar" aria-hidden="true"><span class="proj-dots"><i></i><i></i><i></i></span><span class="proj-bar-stack">python · llms locais (ollama, lm studio)<span class="proj-bar-extra"> · api compatível com openai</span></span></div>
         <div class="proj-media">
           <img src="img/projetos/kell-agente.webp" srcset="img/projetos/kell-agente-800.webp 800w, img/projetos/kell-agente.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) 12vw, 120px" alt="" width="1600" height="1000" loading="lazy">
         </div>
@@ -612,7 +631,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
           <h3 id="proj-kell-agente">Kell Agente</h3>
           <p><span class="lbl">Problema</span>usar IA em projetos de software sem mandar o código para fora.</p>
           <p class="what"><span class="lbl">O que fiz</span>a base de um agente de engenharia de software que roda com IA local: lê o projeto com segurança, monta o contexto e conversa pelo terminal ou pela web.</p>
-          <ul tabindex="0" class="chips" aria-label="Tecnologias">
+          <ul class="chips" aria-label="Tecnologias">
             <li>Python</li>
             <li>LLMs locais (Ollama, LM Studio)</li>
             <li>API compatível com OpenAI</li>
@@ -621,6 +640,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
         </div>
       </article>
       <article class="proj compact reveal" aria-labelledby="proj-assistente" style="--i:1">
+        <div class="proj-bar" aria-hidden="true"><span class="proj-dots"><i></i><i></i><i></i></span><span class="proj-bar-stack">kotlin · android<span class="proj-bar-extra"> · ia generativa</span></span></div>
         <div class="proj-media">
           <img src="img/projetos/assistente.webp" srcset="img/projetos/assistente-800.webp 800w, img/projetos/assistente.webp 1600w" sizes="(max-width: 560px) calc(100vw - 42px), (max-width: 1000px) 12vw, 120px" alt="" width="1600" height="1000" loading="lazy">
         </div>
@@ -629,7 +649,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
           <h3 id="proj-assistente">Assistente pessoal com IA (Android)</h3>
           <p><span class="lbl">Problema</span>lembretes e tarefas espalhados em vários apps e anotações.</p>
           <p class="what"><span class="lbl">O que fiz</span>um agente de IA no celular que funciona como uma secretária: anoto tudo o que preciso lembrar ou fazer, e ele organiza e me lembra.</p>
-          <ul tabindex="0" class="chips" aria-label="Tecnologias">
+          <ul class="chips" aria-label="Tecnologias">
             <li>Kotlin</li>
             <li>Android</li>
             <li>IA generativa</li>
