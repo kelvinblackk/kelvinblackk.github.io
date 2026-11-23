@@ -85,7 +85,6 @@ section{padding-block:clamp(72px,10vw,128px);position:relative}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:13px 22px;font:700 .95rem var(--font-body);text-decoration:none;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
 .btn:hover{box-shadow:0 10px 24px -12px rgba(20,33,26,.5)}
 .btn-primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.btn-sun{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .btn svg{width:18px;height:18px;flex:none}
 
 /* Menu flutuante */
@@ -290,6 +289,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:space-bet
     .proj-media img{transition:transform .25s ease}
     .project-actions a [aria-hidden]{transition:transform .2s}
     .contact-channels svg{transition:transform .2s}
+    .service{transition:background-color .25s}
+    .service-num{transition:color .25s}
+    .svc-arrow{transition:color .25s,translate .25s}
+    .service:is(:hover,:focus-within) .svc-arrow{translate:6px 0}
     html{scroll-behavior:smooth}
     .btn:hover{transform:translateY(-2px)}
     .proj:is(:hover,:focus-within) .proj-media img{transform:scale(1.04)}
@@ -300,6 +303,24 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:space-bet
 
 /* Animações de entrada e de rolagem */
 @media (prefers-reduced-motion: no-preference){
+  @keyframes portrait-settle{from{scale:1.06}}
+  .hero-img{animation:portrait-settle 1.4s var(--ease-out) both}
+  @media (min-width:901px){
+    @supports (animation-timeline:scroll(root)) and (translate:0 1px){
+      @keyframes portrait-parallax{
+        0%{translate:0;transform:scale(1)}
+        5%{transform:scale(1.06)}
+        100%{translate:0 -6%;transform:scale(1.06)}
+      }
+      .hero-img{
+        transform-origin:center top;
+        animation:portrait-settle 1.4s var(--ease-out) both,portrait-parallax linear both;
+        animation-duration:1.4s,auto;
+        animation-timeline:auto,scroll(root);
+        animation-range:normal,0 100vh;
+      }
+    }
+  }
   @supports (animation-timeline: view()) and (translate:0 1px){
     @keyframes rise{from{translate:0 18px}}
     @keyframes enter{from{translate:0 32px;animation-timing-function:var(--ease-out)}}
@@ -315,13 +336,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:space-bet
 }
 
 /* Foco pelo teclado */
-:focus-visible{outline:2px solid var(--accent-text);outline-offset:3px;border-radius:10px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:10px}
 @supports (color:color-mix(in srgb,red 28%,transparent)){
   :focus-visible{box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 28%,transparent)}
 }
-.btn-sun:focus-visible{outline-color:var(--btn-focus-ink,#17201B)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--btn-focus-ink:var(--accent-ink)}}
-:root[data-theme="dark"]{--btn-focus-ink:var(--accent-ink)}
+:is(.btn-primary,.contact-channels .whats):focus-visible{outline-color:var(--ink)}
 @supports (selector(:has(:focus-visible))){
   .proj:has(:focus-visible){outline:2px solid var(--accent-text);outline-offset:4px}
 }
@@ -332,7 +351,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:space-bet
   }
 }
 @media (forced-colors:active){
-  :focus-visible,.btn-sun:focus-visible{outline-color:Highlight;box-shadow:none}
+  :focus-visible,:is(.btn-primary,.contact-channels .whats):focus-visible{outline-color:Highlight;box-shadow:none}
   @supports (selector(:has(:focus-visible))){.proj:has(:focus-visible){outline-color:Highlight}}
 }
 
@@ -377,8 +396,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:space-bet
       transition:opacity .3s;
     }
     .proj:hover::after{opacity:1}
-    @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .proj{--shine:rgb(255 255 255 / .06)}}
-    :root[data-theme="dark"] .proj{--shine:rgb(255 255 255 / .06)}
+    @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .proj{--shine:rgb(227 145 88 / .08)}}
+    :root[data-theme="dark"] .proj{--shine:rgb(227 145 88 / .08)}
   }
 }
 /* Transições entre páginas (View Transitions entre documentos) */
