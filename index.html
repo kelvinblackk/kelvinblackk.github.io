@@ -12,44 +12,23 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://kelvinblackk.github.io/">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face {
-  font-family: 'Fraunces';
-  font-style: italic;
-  font-weight: 600;
-  font-display: swap;
-  src: url(/fonts/fraunces-italic-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Fraunces';
-  font-style: normal;
-  font-weight: 500 700;
-  font-display: swap;
-  src: url(/fonts/fraunces-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url(/fonts/manrope-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face{font-family:"Fraunces Fallback";src:local("Georgia");size-adjust:105.3%;ascent-override:92.9%;descent-override:24.2%;line-gap-override:0%}
-@font-face{font-family:"Fraunces Fallback";src:local("Georgia Italic"),local("Georgia");font-style:italic;size-adjust:105.3%;ascent-override:92.9%;descent-override:24.2%;line-gap-override:0%}
-@font-face{font-family:"Manrope Fallback";src:local("Arial");size-adjust:98.4%;ascent-override:108.4%;descent-override:30.5%;line-gap-override:0%}
+@font-face{font-family:"Bricolage Grotesque";src:url(/fonts/bricolage-latin.woff2) format("woff2");font-weight:600 800;font-stretch:normal;font-display:swap}
+@font-face{font-family:"Geist";src:url(/fonts/geist-latin.woff2) format("woff2");font-weight:400 600;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url(/fonts/geist-mono-latin.woff2) format("woff2");font-weight:400 500;font-display:swap}
+@font-face{font-family:"Bricolage Fallback";src:local("Arial Bold"),local("Arial");font-weight:700;size-adjust:94%;ascent-override:98.9%;descent-override:28.7%;line-gap-override:0%}
+@font-face{font-family:"Geist Fallback";src:local("Arial");size-adjust:101.9%;ascent-override:98.6%;descent-override:28.9%;line-gap-override:0%}
+@font-face{font-family:"Geist Mono Fallback";src:local("Consolas"),local("Menlo"),local("Courier New");size-adjust:109.1%;ascent-override:92.1%;descent-override:27%;line-gap-override:0%}
 :root{
   --bg:#F5F1E8; --surface:#FFFDF8; --ink:#17201B; --muted:#5E665F; --line:#E4DDCF;
   --forest:#1F4D3A; --forest-ink:#F5F1E8; --sun:#D9822B; --sun-ink:#2A1606; --soft:#EBE4D5;
   --glow1:#F2C99A; --glow2:#BFD9C6; --dim:#827963;
   --dark:#14211A; --dark-2:#1C2D24; --dark-ink:#EEF1EC; --dark-muted:#A9B7AE;
-  --font-display:"Fraunces","Fraunces Fallback",Georgia,serif;
-  --font-body:"Manrope","Manrope Fallback",Arial,sans-serif;
+  --font-display:"Bricolage Grotesque","Bricolage Fallback",Arial,sans-serif;
+  --font-body:"Geist","Geist Fallback",Arial,sans-serif;
+  --font-mono:"Geist Mono","Geist Mono Fallback",ui-monospace,Consolas,monospace;
   --radius:20px;
   --ease-out:cubic-bezier(.2,.7,.2,1);
   --sun-text:#A8561A;
