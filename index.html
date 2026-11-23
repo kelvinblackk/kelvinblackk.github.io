@@ -7,7 +7,9 @@
 <meta name="description" content="Sites, sistemas, robôs de WhatsApp e automações com IA, de Boa Vista (RR) para o Brasil. Veja os projetos de Kelvin Jordan e fale comigo.">
 <meta property="og:title" content="Kelvin Jordan · Do problema ao projeto funcionando">
 <meta property="og:description" content="Sites, sistemas e automações com IA. Veja meus projetos.">
-<meta property="og:image" content="https://kelvinblackk.github.io/pousadas/img/demo/hero.webp">
+<meta property="og:image" content="https://kelvinblackk.github.io/img/og/og-kelvin.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://kelvinblackk.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://kelvinblackk.github.io/">
@@ -132,19 +134,21 @@ section{padding-block:clamp(72px,10vw,128px);position:relative}
 .hero-portrait::after{top:10%;right:-10%;width:70%;height:60%;background:radial-gradient(closest-side,var(--glow),transparent);mix-blend-mode:screen}
 .hero-since{position:absolute;right:clamp(12px,3vw,40px);bottom:clamp(12px,3vw,40px);z-index:2;display:grid;gap:2px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface);background:color-mix(in srgb,var(--surface) 80%,transparent);backdrop-filter:blur(10px);color:var(--muted);font:400 .78rem/1.4 var(--font-mono)}
 .hero-since b{color:var(--accent-text);font:700 1.4rem/1.1 var(--font-display)}
-:root[data-theme="dark"] .hero-portrait{margin:0;border-radius:0}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero-portrait{margin:0;border-radius:0}}
+.hero-since span{color:var(--ink)}
+:root[data-theme="dark"] .hero-portrait{margin:0;border-radius:0;--hero-mobile-fade:linear-gradient(0deg,var(--photo-bg),color-mix(in srgb,var(--photo-bg) 96%,transparent) 20%,transparent 40%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero-portrait{margin:0;border-radius:0;--hero-mobile-fade:linear-gradient(0deg,var(--photo-bg),color-mix(in srgb,var(--photo-bg) 96%,transparent) 20%,transparent 40%)}}
 @media (max-width:900px){
   .hero{grid-template-columns:minmax(0,1fr);grid-template-rows:var(--portrait-height,50svh) auto;align-content:start}
   .hero-portrait{grid-area:1/1;margin:72px 16px 0;border-radius:var(--r-lg)}
   .hero-img{object-position:50% 15%}
-  .hero-portrait{--portrait-base-fade:linear-gradient(0deg,var(--photo-bg),color-mix(in srgb,var(--photo-bg) 96%,transparent) 20%,transparent 40%)}
-  .hero-copy{grid-area:2/1;padding:0 var(--gutter) 56px;margin-top:var(--hero-copy-top,24px);gap:16px}
+  .hero-portrait{--portrait-base-fade:var(--hero-mobile-fade,linear-gradient(0deg,var(--photo-bg),transparent 18%))}
+  .hero-copy{grid-area:2/1;padding:0 var(--gutter) 56px;margin-top:var(--hero-copy-top,20px);gap:16px}
   .hero h1{margin-right:0;text-wrap:balance}
   .hero-since{display:none}
 }
 @media (max-width:420px){
-  .hero{--portrait-height:var(--hero-small-height,40svh)}
+  .hero{--portrait-height:var(--hero-small-height,42svh)}
+  .hero-copy{gap:12px}
   .hero .actions>*{width:100%}
 }
 
