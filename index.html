@@ -228,13 +228,28 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
   .juliane-shots .browser-shot:nth-child(3){translate:12px -6px}
 }
 
-.services{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.service{padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg)}
-.service:hover{box-shadow:0 26px 50px -28px rgba(20,33,26,.4)}
-.service-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));color:var(--navy);margin-bottom:14px}
-.service-icon svg{width:24px;height:24px}
-.service h3{font-size:1.15rem;text-wrap:balance}
-.bridge{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--surface-2);border-radius:20px;padding:20px 24px;margin-top:22px}
+.service{display:grid;grid-template-columns:120px minmax(0,1fr) auto;align-items:center;gap:var(--s4);padding-block:var(--s6);border-top:1px solid var(--line)}
+.service:last-child{border-bottom:1px solid var(--line)}
+.service:is(:hover,:focus-within){background:var(--surface)}
+.service-num{color:var(--accent);font:800 4rem/1 var(--font-display);letter-spacing:-.04em}
+@supports (-webkit-text-stroke:1.5px currentColor){
+  .service-num{color:transparent;-webkit-text-stroke:1.5px var(--accent)}
+}
+.service:is(:hover,:focus-within) .service-num{color:var(--accent)}
+.service h3{font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.02em}
+.svc-note{display:block;margin-top:var(--s2);color:var(--muted);font:400 1rem/1.4 var(--font-body);letter-spacing:normal}
+.svc-arrow{color:var(--muted);font-size:28px;margin-inline-end:var(--s4)}
+.service:is(:hover,:focus-within) .svc-arrow{color:var(--accent)}
+@media (max-width:720px){
+  .service{grid-template-columns:56px minmax(0,1fr)}
+  .service-num{font-size:2.4rem}
+  .svc-arrow{display:none}
+}
+@media (forced-colors:active){
+  .service-num,.service:is(:hover,:focus-within) .service-num{color:CanvasText;-webkit-text-stroke:0}
+}
+.bridge{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;background:var(--surface);border-radius:var(--r-lg);padding:var(--s5);margin-top:var(--s6)}
+.bridge .btn{font-weight:600}
 
 .contact-channels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none}
 .contact-channels a{min-height:64px;display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.04);text-decoration:none;font-weight:600;overflow-wrap:anywhere}
@@ -249,7 +264,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 @media(max-width:1000px){
   .proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .proj{grid-column:span 1}
-  .services{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:860px){.contact .portrait{display:none}}
 @media(max-width:720px){
@@ -258,7 +272,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
   .contact-channels{grid-template-columns:1fr}
 }
 @media(max-width:560px){
-  .proj-grid,.services{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr}
   .proj-bar-extra,.proj-bar-prefix{display:none}
   .proj-body,.featured .proj-body{padding:18px}
   .juliane-media{padding:12px 0 18px}
@@ -277,7 +291,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
     .contact-channels svg{transition:transform .2s}
     html{scroll-behavior:smooth}
     .btn:hover{transform:translateY(-2px)}
-    .service:hover{translate:0 -6px}
     .proj:is(:hover,:focus-within) .proj-media img{transform:scale(1.04)}
     .project-actions a:is(:hover,:focus-visible) [aria-hidden]{transform:translateX(3px)}
     .contact-channels a:is(:hover,:focus-visible) svg{transform:translateY(-2px)}
@@ -666,25 +679,29 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
     <div class="sec-head"><span class="eyebrow">Serviços</span><h2>Como posso ajudar</h2></div>
     <div class="services">
       <article class="service reveal" aria-labelledby="servico-1" style="--i:1">
-        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01m3 0h.01"/></svg></span>
+        <span class="service-num" aria-hidden="true">01</span>
         <h3 id="servico-1">Sites e landing pages</h3>
+        <span class="svc-arrow" aria-hidden="true">→</span>
       </article>
       <article class="service reveal" aria-labelledby="servico-2" style="--i:2">
-        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v15a1 1 0 0 0 1 1h15M8 16v-3m5 3V9m5 7V5"/></svg></span>
-        <h3 id="servico-2">Sistemas sob medida (estoque, vendas, gestão)</h3>
+        <span class="service-num" aria-hidden="true">02</span>
+        <h3 id="servico-2">Sistemas sob medida <span class="svc-note">(estoque, vendas, gestão)</span></h3>
+        <span class="svc-arrow" aria-hidden="true">→</span>
       </article>
       <article class="service reveal" aria-labelledby="servico-3" style="--i:3">
-        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4H5a2 2 0 0 0-2 2v14l4-4h10a2 2 0 0 0 2-2v-3m-2-8v6m-3-3h6"/></svg></span>
+        <span class="service-num" aria-hidden="true">03</span>
         <h3 id="servico-3">Robôs de WhatsApp e automações com IA</h3>
+        <span class="svc-arrow" aria-hidden="true">→</span>
       </article>
       <article class="service reveal" aria-labelledby="servico-4" style="--i:4">
-        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l14-4 3 9-14 4zM10 16l2 4h9m-1-10 2-1 1 4-3 1"/></svg></span>
+        <span class="service-num" aria-hidden="true">04</span>
         <h3 id="servico-4">Infraestrutura: redes, câmeras e elétrica</h3>
+        <span class="svc-arrow" aria-hidden="true">→</span>
       </article>
     </div>
     <div class="bridge reveal">
       <span>Tem uma pousada? Veja o que eu monto para hospedagem.</span>
-      <a class="btn btn-sun" href="pousadas/">Ver soluções para pousadas <span aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="pousadas/">Ver soluções para pousadas <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
