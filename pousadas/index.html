@@ -87,7 +87,7 @@ section{padding:96px 0;position:relative}
 .btn svg{width:18px;height:18px;flex:none}
 
 /* Menu flutuante */
-.nav{position:fixed;top:14px;left:50%;translate:-50% 0;z-index:50;width:min(1100px,calc(100% - 24px));display:flex;align-items:center;gap:18px;padding:8px 8px 8px 16px;border-radius:999px;background:var(--bg);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:var(--shadow)}
+.nav{position:fixed;top:14px;left:50%;translate:-50% 0;z-index:50;width:min(1100px,calc(100% - 24px));display:flex;align-items:center;gap:18px;padding:8px 8px 8px 16px;border-radius:999px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--shadow)}
 .nav.small{top:8px;width:min(860px,calc(100% - 24px))}
 .brand{white-space:nowrap;text-decoration:none;font:700 1.1rem var(--font-display)}
 .nav .links{margin-left:auto;display:flex;gap:4px;font:500 .95rem/1 var(--font-body);white-space:nowrap}
@@ -261,7 +261,7 @@ section{padding:96px 0;position:relative}
 @media (max-width:900px){.process{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.process{grid-template-columns:1fr}}
 .process div{display:grid;gap:8px;align-content:start}
-.process em{font:italic 600 2.6rem var(--font-display);color:var(--accent-text);line-height:1}
+.process em{font:600 2.6rem/1 var(--font-display);color:var(--accent-text)}
 .process b{font-size:1.08rem}
 .process span{color:var(--muted);font-size:.95rem}
 
@@ -479,7 +479,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:space-bet
       <div class="phone-wrap">
         <div class="phone" role="group" aria-label="Exemplo de conversa entre hóspede e atendente virtual no WhatsApp">
           <div class="head"><i aria-hidden="true">R</i><div>Remanso do Rio<small>conta comercial · conversa de exemplo</small></div></div>
-          <div class="chat" id="chat" role="group" aria-label="Conversa entre hóspede e atendente virtual no WhatsApp">
+          <div class="chat" id="chat" role="region" aria-label="Conversa entre hóspede e atendente virtual no WhatsApp" tabindex="0">
             <div class="msg in" data-s="1">Oi! Vocês aceitam pet?</div>
             <div class="msg out" data-s="1">Aceitamos sim 🐶 Pequeno porte, taxa de R$ 30 por estadia.</div>
             <div class="msg in" data-s="2">Tem quarto pra 2 de 14 a 16 de novembro?</div>
@@ -632,7 +632,9 @@ function upTo(n) {
   parts.forEach(p => p.classList.toggle("show", +p.dataset.s <= n));
   stepEls.forEach(s => { s.classList.toggle("on", +s.dataset.step <= n); s.classList.toggle("cur", +s.dataset.step === n); });
   dots.forEach((d, i) => d.classList.toggle("cur", i === n - 1));
-  chat.scrollTo({ top: chat.scrollHeight, behavior: calm ? "auto" : "smooth" });
+  if (document.activeElement !== chat) {
+    chat.scrollTo({ top: chat.scrollHeight, behavior: calm ? "auto" : "smooth" });
+  }
 }
 // celular: o cartão encostado à esquerda do carrossel manda
 function updateStepFromScroll() {

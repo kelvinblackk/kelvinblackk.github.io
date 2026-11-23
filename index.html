@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://kelvinblackk.github.io/">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="preload" as="image" media="(max-width: 900px)" imagesrcset="img/kelvin/kelvin-480.webp 480w, img/kelvin/kelvin-hero-720.webp 720w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" media="(max-width: 900px)" imagesrcset="img/kelvin/kelvin-480.webp 480w, img/kelvin/kelvin-hero-mobile-720.webp 720w" imagesizes="(min-width: 561px) max(480px, 40svh), 100vw" fetchpriority="high">
 <link rel="preload" href="/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -90,7 +90,7 @@ section{padding-block:clamp(72px,10vw,128px);position:relative}
 .btn svg{width:18px;height:18px;flex:none}
 
 /* Menu flutuante */
-.nav{position:fixed;top:14px;left:50%;translate:-50% 0;z-index:50;width:min(1100px,calc(100% - 24px));display:flex;align-items:center;gap:18px;padding:8px 8px 8px 16px;border-radius:999px;background:var(--bg);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:var(--shadow)}
+.nav{position:fixed;top:14px;left:50%;translate:-50% 0;z-index:50;width:min(1100px,calc(100% - 24px));display:flex;align-items:center;gap:18px;padding:8px 8px 8px 16px;border-radius:999px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--shadow)}
 .nav.small{top:8px;width:min(860px,calc(100% - 24px))}
 .brand{white-space:nowrap;text-decoration:none;font:700 1.1rem var(--font-display)}
 .nav .links{margin-left:auto;display:flex;gap:4px;font:500 .95rem/1 var(--font-body);white-space:nowrap}
@@ -135,8 +135,8 @@ section{padding-block:clamp(72px,10vw,128px);position:relative}
 .hero-since{position:absolute;right:clamp(12px,3vw,40px);bottom:clamp(12px,3vw,40px);z-index:2;display:grid;gap:2px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface);background:color-mix(in srgb,var(--surface) 80%,transparent);backdrop-filter:blur(10px);color:var(--muted);font:400 .78rem/1.4 var(--font-mono)}
 .hero-since b{color:var(--accent-text);font:700 1.4rem/1.1 var(--font-display)}
 .hero-since span{color:var(--ink)}
-:root[data-theme="dark"] .hero-portrait{margin:0;border-radius:0;--hero-mobile-fade:linear-gradient(0deg,var(--photo-bg),color-mix(in srgb,var(--photo-bg) 96%,transparent) 20%,transparent 40%)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero-portrait{margin:0;border-radius:0;--hero-mobile-fade:linear-gradient(0deg,var(--photo-bg),color-mix(in srgb,var(--photo-bg) 96%,transparent) 20%,transparent 40%)}}
+:root[data-theme="dark"] .hero-portrait{margin:0;border-radius:0;--portrait-tablet-top:72px;--hero-mobile-fade:linear-gradient(0deg,var(--photo-bg),color-mix(in srgb,var(--photo-bg) 96%,transparent) 20%,transparent 40%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero-portrait{margin:0;border-radius:0;--portrait-tablet-top:72px;--hero-mobile-fade:linear-gradient(0deg,var(--photo-bg),color-mix(in srgb,var(--photo-bg) 96%,transparent) 20%,transparent 40%)}}
 @media (max-width:900px){
   .hero{grid-template-columns:minmax(0,1fr);grid-template-rows:var(--portrait-height,50svh) auto;align-content:start}
   .hero-portrait{grid-area:1/1;margin:72px 16px 0;border-radius:var(--r-lg)}
@@ -145,6 +145,15 @@ section{padding-block:clamp(72px,10vw,128px);position:relative}
   .hero-copy{grid-area:2/1;padding:0 var(--gutter) 56px;margin-top:var(--hero-copy-top,20px);gap:16px}
   .hero h1{margin-right:0;text-wrap:balance}
   .hero-since{display:none}
+}
+@media (561px <= width <= 900px){
+  .hero-portrait{--portrait-base-fade:linear-gradient(0deg,var(--photo-bg),transparent 21%)}
+  .hero-copy{margin-top:20px}
+  .hero-img{
+    top:var(--portrait-tablet-top,0px);height:calc(100% - var(--portrait-tablet-top,0px));
+    width:auto;margin-inline:auto;object-fit:contain;
+    mask-image:linear-gradient(90deg,transparent,#000 14% 86%,transparent)
+  }
 }
 @media (max-width:420px){
   .hero{--portrait-height:var(--hero-small-height,42svh)}
@@ -280,7 +289,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:space-bet
   .proj-bar-extra,.proj-bar-prefix{display:none}
   .proj-body,.featured .proj-body{padding:18px}
   .juliane-media{padding:12px 0 18px}
-  .juliane-shots{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding:12px 18px 18px;scroll-padding-inline:18px;overscroll-behavior-inline:contain}
+  .juliane-shots{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;
+    padding:12px 18px 18px;scroll-padding-inline:18px;overscroll-behavior-inline:contain;
+    content-visibility:auto;
+    /* A tela de celular, com 70% da largura útil, determina a altura do carrossel. */
+    contain-intrinsic-block-size:auto calc((100vw - 2 * var(--gutter) - 38px) * 1.24)
+  }
   .juliane-shots:focus-visible{outline-offset:-3px}
   .juliane-shots>*{flex:0 0 70%;scroll-snap-align:start}
   .mobile-hint{display:block}
@@ -367,8 +382,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:space-bet
 }
 @media (min-width:1001px){
   .proj.featured{grid-column:span 4;grid-row:span 2}
-  .proj.featured .juliane-media{flex:1}
+  .proj.featured .juliane-media{flex:1;grid-template-rows:1fr auto}
   .proj.featured .proj-body{flex:none}
+  .juliane-shots{
+    max-width:none;grid-template-columns:1fr;grid-template-areas:"login" "mobile" "desktop";
+    align-content:space-between;gap:0
+  }
+  .juliane-shots .device-shot{grid-area:mobile;width:34%;justify-self:end;translate:0;margin-block:-16px}
+  .juliane-shots .browser-shot{width:88%}
+  .juliane-shots .browser-shot:nth-child(2){grid-area:login;translate:0}
+  .juliane-shots .browser-shot:nth-child(3){grid-area:desktop;rotate:-2deg;translate:0}
   .proj:not(.featured,.compact){grid-column:span 2;--bento-index:0}
   .proj:not(.featured,.compact) .proj-media{aspect-ratio:2}
 }
@@ -444,9 +467,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:space-bet
     </div>
   </div>
   <div class="hero-portrait">
-<picture>
-      <source media="(max-width: 900px)" srcset="img/kelvin/kelvin-480.webp 480w, img/kelvin/kelvin-hero-720.webp 720w" sizes="100vw">
-      <img src="img/kelvin/kelvin-hero-720.webp" srcset="img/kelvin/kelvin-480.webp 480w, img/kelvin/kelvin-hero-720.webp 720w, img/kelvin/kelvin-hero-1200.webp 1200w" sizes="(max-width: 900px) 100vw, 45vw" alt="Kelvin Jordan, de terno azul e óculos" width="720" height="900" fetchpriority="high" class="hero-img">
+    <picture>
+      <source media="(max-width: 900px)" srcset="img/kelvin/kelvin-480.webp 480w, img/kelvin/kelvin-hero-mobile-720.webp 720w" sizes="(min-width: 561px) max(480px, 40svh), 100vw">
+      <img src="img/kelvin/kelvin-hero-720.webp" srcset="img/kelvin/kelvin-hero-720.webp 720w, img/kelvin/kelvin-hero-1200.webp 1200w" sizes="max(45vw, 75svh)" alt="Kelvin Jordan, de terno azul e óculos" width="720" height="900" fetchpriority="high" class="hero-img">
     </picture>
     <div class="hero-since"><b>Desde 2008</b><span>na tecnologia · Boa Vista (RR)</span></div>
   </div>
